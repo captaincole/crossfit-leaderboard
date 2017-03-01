@@ -215,7 +215,7 @@ var LeaderboardComponent = (function () {
     };
     LeaderboardComponent.prototype.changeLimit = function (num) {
         this.limit = parseInt(num, 10);
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate);
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     };
     LeaderboardComponent.prototype.searchNames = function (name) {
         this.page = 1;
@@ -372,7 +372,7 @@ module.exports = "<h2 class=\"subheader\" (click)=\"goToSite()\">\n  <span class
 /***/ 615:
 /***/ (function(module, exports) {
 
-module.exports = "\n<th scope=\"row\">{{position}}</th>\n<td class=\"text\">{{athlete.name}}</td>\n<td class=\"text\">{{athlete.region}}</td>\n<td class=\"text\">{{athlete.affiliateid}}</td>\n<td class=\"text\">{{athlete.scores[0].scoredisplay}}</td>"
+module.exports = "\n<th scope=\"row\">{{position}}</th>\n<td class=\"text\">{{athlete.name}}</td>\n<td class=\"text\">{{athlete.region}}</td>\n<td class=\"text\">{{athlete.affiliateid}}</td>\n<td class=\"text\">{{athlete.scores[0]?.scoredisplay}}</td>"
 
 /***/ }),
 

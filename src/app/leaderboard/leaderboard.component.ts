@@ -25,7 +25,7 @@ export class LeaderboardComponent implements OnInit {
 
   changeLimit(num) {
     this.limit = parseInt(num, 10);
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate);
+    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
   }
 
   searchNames(name) {

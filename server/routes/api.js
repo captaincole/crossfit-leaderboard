@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
     }
     
     query.where('scores.0.scoredisplay').ne('--');
+    query.where('name').exists();
 
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
