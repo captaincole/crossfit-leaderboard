@@ -81,14 +81,28 @@
     <input name="affiliate" class="name-input" (keyup)="searchAffiliate($event.target.value)" type="text">
   </div>
 </div>
-<table class="leaderboard-table">
-  <tr>
-    <th>Position</th>
-    <th>Name</th>
-    <th>Points</th>
-    <th>Region</th>
-    <th>Affiliate</th>
-    <th>17.1</th>
-  </tr>
-  <app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i" [athlete]="athlete"></app-score>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th class="number">Position</th>
+      <th class="text">Name</th>
+      <th class="number">Points</th>
+      <th class="text">Region</th>
+      <th class="text">Affiliate</th>
+      <th class="text">17.1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i + (limit * (page -1))" [athlete]="athlete"></tr>
+  </tbody>
 </table>
+  <div class="pagination">
+    <button class="first" (click)="changePage(1)">First</button>
+    <button class="previous" (click)="backPage()">Previous</button>
+      <a *ngIf="page > 1" (click)="changePage(page - 1)">{{page - 1}}</a>
+      <a class="highligh" (click)="changePage(page)">{{page}}</a>
+      <a (click)="changePage(page + 1)">{{page + 1}}</a>
+      <a (click)="changePage(page + 2)">{{page + 2}}</a>
+      <a (click)="changePage(page + 3)">{{page + 3}}</a>      
+    <button class="previous" (click)="nextPage()">Next</button>      
+  </div>

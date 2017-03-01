@@ -208,7 +208,7 @@ var LeaderboardComponent = (function () {
     function LeaderboardComponent(athletes) {
         this.athletes = athletes;
         this.limit = 10;
-        this.offset = 0;
+        this.page = 1;
     }
     LeaderboardComponent.prototype.ngOnInit = function () {
         this.data = this.athletes.getAthletes(10, 0, null, null);
@@ -218,30 +218,43 @@ var LeaderboardComponent = (function () {
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate);
     };
     LeaderboardComponent.prototype.searchNames = function (name) {
+        this.page = 1;
         this.name = name;
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate);
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     };
     LeaderboardComponent.prototype.searchAffiliate = function (affName) {
+        this.page = 1;
         this.affiliate = affName;
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate);
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     };
     LeaderboardComponent.prototype.changePage = function (pageNum) {
-        this.data = this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate);
+        if (pageNum >= 1) {
+            this.page = pageNum;
+            this.data = this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region);
+        }
     };
     LeaderboardComponent.prototype.changeDivision = function (division) {
-        this.offset = 0;
+        this.page = 1;
         this.division = parseInt(division, 10);
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division);
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     };
     LeaderboardComponent.prototype.changeOccupation = function (occupationNum) {
-        this.offset = 0;
+        this.page = 1;
         this.occupation = occupationNum;
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation);
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     };
     LeaderboardComponent.prototype.changeRegion = function (region) {
         this.region = parseInt(region, 10);
-        this.offset = 0;
+        this.page = 1;
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    };
+    LeaderboardComponent.prototype.backPage = function () {
+        if (this.page > 1) {
+            this.changePage(this.page - 1);
+        }
+    };
+    LeaderboardComponent.prototype.nextPage = function () {
+        this.changePage(this.page + 1);
     };
     LeaderboardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
@@ -290,7 +303,7 @@ var ScoreComponent = (function () {
     ], ScoreComponent.prototype, "position", void 0);
     ScoreComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
-            selector: 'app-score',
+            selector: '[app-score]',
             template: __webpack_require__(615),
             styles: [__webpack_require__(612)]
         }), 
@@ -328,7 +341,7 @@ module.exports = ""
 /***/ 611:
 /***/ (function(module, exports) {
 
-module.exports = ".score {\n    display: table-row;\n}"
+module.exports = "table {\n    margin: 5px;\n    border: 1px solid #EEEEEE;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n}\n\n.pagination {\n    width: 200px;\n\n    margin: auto;\n}\n\n.pagination button {\n    width: 20px;\n    height: 20px;\n    text-align: center;\n}"
 
 /***/ }),
 
@@ -349,14 +362,14 @@ module.exports = "<app-leaderboard></app-leaderboard>\n\n"
 /***/ 614:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"leaderboard-header\">\n  CrossFit Open 2017 Leaderboard\n<div>\n<div class=\"leaderboard-options\">\n  <div class=\"option\">\n    <label for=\"limit-input\">Number of Results</label>\n    <select class=\"limit-input\" name=\"limit-input\" (change)=\"changeLimit($event.target.value)\">\n      <option selected value=\"10\">10</option>\n      <option value=\"25\">25</option>\n      <option value=\"50\">50</option>    \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"division-input\">Division</label>\n    <select class=\"division-input\" name=\"division-input\" (change)=\"changeDivision($event.target.value)\">\n      <option selected value=\"0\">Both</option>        \n      <option value=\"1\">Individual Men</option>\n      <option value=\"2\">Individual Women</option>      \n      <option value=\"15\">Teenage Girls (14-15)</option>\n      <option value=\"14\">Teenage Boys (14-15)</option>  \n      <option value=\"17\">Teenage Girls (16-17)</option>\n      <option value=\"16\">Teenage Boys (16-17)</option>  \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"occupation-input\">Occupation</label>\n    <select class=\"occupation-input\" name=\"occupation-input\" (change)=\"changeOccupation($event.target.value)\">\n      <option selected value=\"0\">All</option>        \n      <option value=\"1\">Military Servicemember</option>\n      <option value=\"2\">Law Enforcement Officer</option>  \n      <option value=\"3\">Firefighter</option>  \n      <option value=\"4\">EMT / Paramedic</option>  \n      <option value=\"5\">Registered Nurse</option>  \n      <option value=\"6\">Medical Doctor</option>  \n      <option value=\"7\">School Teacher</option>  \n      <option value=\"8\">Student</option>  \n      <option value=\"9\">Garage CrossFitter</option>  \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"region-input\">Region</label>\n    <select class=\"region-input\" name=\"region-input\" (change)=\"changeRegion($event.target.value)\">\n      <option selected value=\"0\">Worldwide</option>        \n      <option value=\"1\">Africa</option>\n      <option value=\"2\">Asia</option>  \n      <option value=\"3\">Australia</option>  \n      <option value=\"4\">Canada East</option>  \n      <option value=\"5\">Canada West</option>  \n      <option value=\"6\">Central East</option>  \n      <option value=\"7\">Europe</option>  \n      <option value=\"8\">Latin America</option>  \n      <option value=\"9\">Mid Atlantic</option>  \n      <option value=\"10\">North Central</option>  \n      <option value=\"11\">North East</option>  \n      <option value=\"12\">Northern California</option>  \n      <option value=\"13\">North West</option>  \n      <option value=\"14\">South Central</option>  \n      <option value=\"15\">South East</option>  \n      <option value=\"16\">Southern California</option>  \n      <option value=\"17\">South West</option>  \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"name\">Athlete Name</label>\n    <input name=\"name\" class=\"name-input\" (keyup)=\"searchNames($event.target.value)\" type=\"text\">\n  </div>\n  <div class=\"option\">\n    <label for=\"affiliate\">Affiliate</label>\n    <input name=\"affiliate\" class=\"name-input\" (keyup)=\"searchAffiliate($event.target.value)\" type=\"text\">\n  </div>\n</div>\n<table class=\"leaderboard-table\">\n  <tr>\n    <th>Position</th>\n    <th>Name</th>\n    <th>Points</th>\n    <th>Region</th>\n    <th>Affiliate</th>\n    <th>17.1</th>\n  </tr>\n  <app-score class=\"score\" *ngFor=\"let athlete of data | async; let i = index;\" [position]=\"i\" [athlete]=\"athlete\"></app-score>\n</table>\n"
+module.exports = "<div class=\"leaderboard-header\">\n  CrossFit Open 2017 Leaderboard\n<div>\n<div class=\"leaderboard-options\">\n  <div class=\"option\">\n    <label for=\"limit-input\">Number of Results</label>\n    <select class=\"limit-input\" name=\"limit-input\" (change)=\"changeLimit($event.target.value)\">\n      <option selected value=\"10\">10</option>\n      <option value=\"25\">25</option>\n      <option value=\"50\">50</option>    \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"division-input\">Division</label>\n    <select class=\"division-input\" name=\"division-input\" (change)=\"changeDivision($event.target.value)\">\n      <option selected value=\"0\">Both</option>        \n      <option value=\"1\">Individual Men</option>\n      <option value=\"2\">Individual Women</option>  \n      <option value=\"15\">Teenage Girls (14-15)</option>\n      <option value=\"14\">Teenage Boys (14-15)</option>  \n      <option value=\"17\">Teenage Girls (16-17)</option>\n      <option value=\"16\">Teenage Boys (16-17)</option>\n      <option value=\"19\">Masters Women (35-39)</option>  \n      <option value=\"18\">Masters Men (35-39)</option>  \n      <option value=\"13\">Masters Women (40-44)</option>  \n      <option value=\"12\">Masters Men (40-44)</option>  \n      <option value=\"4\">Masters Women (45-49)</option>  \n      <option value=\"3\">Masters Men (45-49)</option>  \n      <option value=\"6\">Masters Women (50-54)</option>  \n      <option value=\"5\">Masters Men (50-54)</option>          \n      <option value=\"8\">Masters Women (55-59)</option>          \n      <option value=\"7\">Masters Men (55-59)</option>          \n      <option value=\"10\">Masters Women (60+)</option>          \n      <option value=\"9\">Masters Men (60+)</option>          \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"occupation-input\">Occupation</label>\n    <select class=\"occupation-input\" name=\"occupation-input\" (change)=\"changeOccupation($event.target.value)\">\n      <option selected value=\"0\">All</option>        \n      <option value=\"1\">Military Servicemember</option>\n      <option value=\"2\">Law Enforcement Officer</option>  \n      <option value=\"3\">Firefighter</option>  \n      <option value=\"4\">EMT / Paramedic</option>  \n      <option value=\"5\">Registered Nurse</option>  \n      <option value=\"6\">Medical Doctor</option>  \n      <option value=\"7\">School Teacher</option>  \n      <option value=\"8\">Student</option>  \n      <option value=\"9\">Garage CrossFitter</option>  \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"region-input\">Region</label>\n    <select class=\"region-input\" name=\"region-input\" (change)=\"changeRegion($event.target.value)\">\n      <option selected value=\"0\">Worldwide</option>        \n      <option value=\"1\">Africa</option>\n      <option value=\"2\">Asia</option>  \n      <option value=\"3\">Australia</option>  \n      <option value=\"4\">Canada East</option>  \n      <option value=\"5\">Canada West</option>  \n      <option value=\"6\">Central East</option>  \n      <option value=\"7\">Europe</option>  \n      <option value=\"8\">Latin America</option>  \n      <option value=\"9\">Mid Atlantic</option>  \n      <option value=\"10\">North Central</option>  \n      <option value=\"11\">North East</option>  \n      <option value=\"12\">Northern California</option>  \n      <option value=\"13\">North West</option>  \n      <option value=\"14\">South Central</option>  \n      <option value=\"15\">South East</option>  \n      <option value=\"16\">Southern California</option>  \n      <option value=\"17\">South West</option>  \n    </select>\n  <div>\n  <div class=\"option\">\n    <label for=\"name\">Athlete Name</label>\n    <input name=\"name\" class=\"name-input\" (keyup)=\"searchNames($event.target.value)\" type=\"text\">\n  </div>\n  <div class=\"option\">\n    <label for=\"affiliate\">Affiliate</label>\n    <input name=\"affiliate\" class=\"name-input\" (keyup)=\"searchAffiliate($event.target.value)\" type=\"text\">\n  </div>\n</div>\n<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th class=\"number\">Position</th>\n      <th class=\"text\">Name</th>\n      <th class=\"number\">Points</th>\n      <th class=\"text\">Region</th>\n      <th class=\"text\">Affiliate</th>\n      <th class=\"text\">17.1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr app-score class=\"score\" *ngFor=\"let athlete of data | async; let i = index;\" [position]=\"i + (limit * (page -1))\" [athlete]=\"athlete\"></tr>\n  </tbody>\n</table>\n  <div class=\"pagination\">\n    <button class=\"first\" (click)=\"changePage(1)\">First</button>\n    <button class=\"previous\" (click)=\"backPage()\">Previous</button>\n      <a *ngIf=\"page > 1\" (click)=\"changePage(page - 1)\">{{page - 1}}</a>\n      <a class=\"highligh\" (click)=\"changePage(page)\">{{page}}</a>\n      <a (click)=\"changePage(page + 1)\">{{page + 1}}</a>\n      <a (click)=\"changePage(page + 2)\">{{page + 2}}</a>\n      <a (click)=\"changePage(page + 3)\">{{page + 3}}</a>      \n    <button class=\"previous\" (click)=\"nextPage()\">Next</button>      \n  </div>"
 
 /***/ }),
 
 /***/ 615:
 /***/ (function(module, exports) {
 
-module.exports = "<td>{{position}}</td>\n<td>{{athlete.name}}</td>\n<td>{{athlete.overallscore}}</td>\n<td>{{athlete.region}}</td>\n<td>{{athlete.affiliate}}</td>\n<td>{{athlete.scores[0].scoredisplay}}</td>"
+module.exports = "\n<th scope=\"row\">{{position}}</th>\n<td class=\"text\">{{athlete.name}}</td>\n<td class=\"number\">{{athlete.overallscore}}</td>\n<td class=\"text\">{{athlete.region}}</td>\n<td class=\"text\">{{athlete.affiliate}}</td>\n<td class=\"text\">{{athlete.scores[0].scoredisplay}}</td>"
 
 /***/ }),
 

@@ -1,3 +1,17 @@
-.score {
-    display: table-row;
+table {
+    margin: 5px;
+    border: 1px solid #EEEEEE;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.pagination {
+    width: 200px;
+
+    margin: auto;
+}
+
+.pagination button {
+    width: 20px;
+    height: 20px;
+    text-align: center;
 }

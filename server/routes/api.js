@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 
     let offset = parseInt(req.query.offset, 10);
     if (offset) {
-        query.offset(offset);
+        query.skip(offset);
     }
 
     query.exec((err, users) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-score',
+  selector: '[app-score]',
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.css']
 })
