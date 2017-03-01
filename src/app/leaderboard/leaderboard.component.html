@@ -1,10 +1,82 @@
 <div class="leaderboard-header">
-  leaderboard works! 
+  CrossFit Open 2017 Leaderboard
 <div>
+<div class="leaderboard-options">
+  <div class="option">
+    <label for="limit-input">Number of Results</label>
+    <select class="limit-input" name="limit-input" (change)="changeLimit($event.target.value)">
+      <option selected value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>    
+    </select>
+  <div>
+  <div class="option">
+    <label for="division-input">Division</label>
+    <select class="division-input" name="division-input" (change)="changeDivision($event.target.value)">
+      <option selected value="0">Both</option>        
+      <option value="1">Individual Men</option>
+      <option value="2">Individual Women</option>      
+      <option value="15">Teenage Girls (14-15)</option>
+      <option value="14">Teenage Boys (14-15)</option>  
+      <option value="17">Teenage Girls (16-17)</option>
+      <option value="16">Teenage Boys (16-17)</option>  
+    </select>
+  <div>
+  <div class="option">
+    <label for="occupation-input">Occupation</label>
+    <select class="occupation-input" name="occupation-input" (change)="changeOccupation($event.target.value)">
+      <option selected value="0">All</option>        
+      <option value="1">Military Servicemember</option>
+      <option value="2">Law Enforcement Officer</option>  
+      <option value="3">Firefighter</option>  
+      <option value="4">EMT / Paramedic</option>  
+      <option value="5">Registered Nurse</option>  
+      <option value="6">Medical Doctor</option>  
+      <option value="7">School Teacher</option>  
+      <option value="8">Student</option>  
+      <option value="9">Garage CrossFitter</option>  
+    </select>
+  <div>
+  <div class="option">
+    <label for="region-input">Region</label>
+    <select class="region-input" name="region-input" (change)="changeRegion($event.target.value)">
+      <option selected value="0">Worldwide</option>        
+      <option value="1">Africa</option>
+      <option value="2">Asia</option>  
+      <option value="3">Australia</option>  
+      <option value="4">Canada East</option>  
+      <option value="5">Canada West</option>  
+      <option value="6">Central East</option>  
+      <option value="7">Europe</option>  
+      <option value="8">Latin America</option>  
+      <option value="9">Mid Atlantic</option>  
+      <option value="10">North Central</option>  
+      <option value="11">North East</option>  
+      <option value="12">Northern California</option>  
+      <option value="13">North West</option>  
+      <option value="14">South Central</option>  
+      <option value="15">South East</option>  
+      <option value="16">Southern California</option>  
+      <option value="17">South West</option>  
+    </select>
+  <div>
+  <div class="option">
+    <label for="name">Athlete Name</label>
+    <input name="name" class="name-input" (keyup)="searchNames($event.target.value)" type="text">
+  </div>
+  <div class="option">
+    <label for="affiliate">Affiliate</label>
+    <input name="affiliate" class="name-input" (keyup)="searchAffiliate($event.target.value)" type="text">
+  </div>
+</div>
 <table class="leaderboard-table">
   <tr>
+    <th>Position</th>
     <th>Name</th>
+    <th>Points</th>
     <th>Region</th>
+    <th>Affiliate</th>
+    <th>17.1</th>
   </tr>
-  <app-score class="score" *ngFor="let athlete of data | async" [athlete]="athlete"></app-score>
+  <app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i" [athlete]="athlete"></app-score>
 </table>
