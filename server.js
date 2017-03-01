@@ -4,7 +4,17 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/crossfit');
+
+let options = {
+    server: {
+        socketOptions: { keepAlive: 120 }
+    },
+    replset: {
+        socketOptions: { keepAlive: 120 }
+    }
+};
+mongoose.connect('mongodb://thielcole:GbQkNXHzEv3De683@cluster0-shard-00-00-svwvf.mongodb.net:27017,cluster0-shard-00-01-svwvf.mongodb.net:27017,cluster0-shard-00-02-svwvf.mongodb.net:27017/crossfit?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', options);  
+
 
 // Get our API routes
 const api = require('./server/routes/api');
