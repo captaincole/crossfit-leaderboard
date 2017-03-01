@@ -1,17 +1,50 @@
+.leaderboard-header {
+    width: 100%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 5px;
+}
+
+.leaderboard-options {
+    margin-bottom: 10px;
+}
+
+.subheader {
+    font-family: 'Avenir Next';
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    color: #314655;
+    letter-spacing: -2px;
+}
+.subheader .number {
+    color: #06D3CA;
+}
+
 table {
-    margin: 5px;
     border: 1px solid #EEEEEE;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .pagination {
-    width: 200px;
-
-    margin: auto;
+    width: 100%;
+    text-align: center;
 }
 
-.pagination button {
-    width: 20px;
-    height: 20px;
-    text-align: center;
+.pagination a {
+    padding: 0px 5px;
+    color: #337ab7;
+}
+.option label {
+    padding-top: 5px;
+    display: block;
+}
+.option input {
+    width: 100%;
+}
+
+.option select {
+    width: 100%;
 }

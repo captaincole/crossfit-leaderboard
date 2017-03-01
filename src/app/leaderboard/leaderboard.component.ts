@@ -74,4 +74,8 @@ export class LeaderboardComponent implements OnInit {
   nextPage() {
     this.changePage(this.page + 1);
   }
+
+  goToSite() {
+    window.location.href = 'www.38plank.com';
+  }
 }

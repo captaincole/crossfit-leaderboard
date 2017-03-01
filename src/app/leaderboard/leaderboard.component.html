@@ -1,84 +1,91 @@
-<div class="leaderboard-header">
+<h2 class="subheader" (click)="goToSite()">
+  <span class="number">38</span>Plank
+</h2>
+<h2 class="leaderboard-header">
   CrossFit Open 2017 Leaderboard
-<div>
-<div class="leaderboard-options">
-  <div class="option">
-    <label for="limit-input">Number of Results</label>
-    <select class="limit-input" name="limit-input" (change)="changeLimit($event.target.value)">
-      <option selected value="10">10</option>
-      <option value="25">25</option>
-      <option value="50">50</option>    
-    </select>
-  <div>
-  <div class="option">
-    <label for="division-input">Division</label>
-    <select class="division-input" name="division-input" (change)="changeDivision($event.target.value)">
-      <option selected value="0">Both</option>        
-      <option value="1">Individual Men</option>
-      <option value="2">Individual Women</option>  
-      <option value="15">Teenage Girls (14-15)</option>
-      <option value="14">Teenage Boys (14-15)</option>  
-      <option value="17">Teenage Girls (16-17)</option>
-      <option value="16">Teenage Boys (16-17)</option>
-      <option value="19">Masters Women (35-39)</option>  
-      <option value="18">Masters Men (35-39)</option>  
-      <option value="13">Masters Women (40-44)</option>  
-      <option value="12">Masters Men (40-44)</option>  
-      <option value="4">Masters Women (45-49)</option>  
-      <option value="3">Masters Men (45-49)</option>  
-      <option value="6">Masters Women (50-54)</option>  
-      <option value="5">Masters Men (50-54)</option>          
-      <option value="8">Masters Women (55-59)</option>          
-      <option value="7">Masters Men (55-59)</option>          
-      <option value="10">Masters Women (60+)</option>          
-      <option value="9">Masters Men (60+)</option>          
-    </select>
-  <div>
-  <div class="option">
-    <label for="occupation-input">Occupation</label>
-    <select class="occupation-input" name="occupation-input" (change)="changeOccupation($event.target.value)">
-      <option selected value="0">All</option>        
-      <option value="1">Military Servicemember</option>
-      <option value="2">Law Enforcement Officer</option>  
-      <option value="3">Firefighter</option>  
-      <option value="4">EMT / Paramedic</option>  
-      <option value="5">Registered Nurse</option>  
-      <option value="6">Medical Doctor</option>  
-      <option value="7">School Teacher</option>  
-      <option value="8">Student</option>  
-      <option value="9">Garage CrossFitter</option>  
-    </select>
-  <div>
-  <div class="option">
-    <label for="region-input">Region</label>
-    <select class="region-input" name="region-input" (change)="changeRegion($event.target.value)">
-      <option selected value="0">Worldwide</option>        
-      <option value="1">Africa</option>
-      <option value="2">Asia</option>  
-      <option value="3">Australia</option>  
-      <option value="4">Canada East</option>  
-      <option value="5">Canada West</option>  
-      <option value="6">Central East</option>  
-      <option value="7">Europe</option>  
-      <option value="8">Latin America</option>  
-      <option value="9">Mid Atlantic</option>  
-      <option value="10">North Central</option>  
-      <option value="11">North East</option>  
-      <option value="12">Northern California</option>  
-      <option value="13">North West</option>  
-      <option value="14">South Central</option>  
-      <option value="15">South East</option>  
-      <option value="16">Southern California</option>  
-      <option value="17">South West</option>  
-    </select>
-  <div>
-  <div class="option">
-    <label for="name">Athlete Name</label>
-    <input name="name" class="name-input" (keyup)="searchNames($event.target.value)" type="text">
+</h2>
+<div class="leaderboard-options container">
+  <div class="row">
+    <div class="option col-sm-3">
+      <label for="limit-input">Number of Results</label>
+      <select class="limit-input form-control" name="limit-input" (change)="changeLimit($event.target.value)">
+        <option selected value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>    
+      </select>
+    </div>
+    <div class="option col-sm-3">
+      <label for="division-input">Division</label>
+      <select class="division-input form-control" name="division-input" (change)="changeDivision($event.target.value)">
+        <option selected value="0">Both</option>        
+        <option value="1">Individual Men</option>
+        <option value="2">Individual Women</option>  
+        <option value="15">Teenage Girls (14-15)</option>
+        <option value="14">Teenage Boys (14-15)</option>  
+        <option value="17">Teenage Girls (16-17)</option>
+        <option value="16">Teenage Boys (16-17)</option>
+        <option value="19">Masters Women (35-39)</option>  
+        <option value="18">Masters Men (35-39)</option>  
+        <option value="13">Masters Women (40-44)</option>  
+        <option value="12">Masters Men (40-44)</option>  
+        <option value="4">Masters Women (45-49)</option>  
+        <option value="3">Masters Men (45-49)</option>  
+        <option value="6">Masters Women (50-54)</option>  
+        <option value="5">Masters Men (50-54)</option>          
+        <option value="8">Masters Women (55-59)</option>          
+        <option value="7">Masters Men (55-59)</option>          
+        <option value="10">Masters Women (60+)</option>          
+        <option value="9">Masters Men (60+)</option>          
+      </select>
+    </div>
+    <div class="option col-sm-3">
+      <label for="occupation-input">Occupation</label>
+      <select class="occupation-input form-control" name="occupation-input" (change)="changeOccupation($event.target.value)">
+        <option selected value="0">All</option>        
+        <option value="1">Military Servicemember</option>
+        <option value="2">Law Enforcement Officer</option>  
+        <option value="3">Firefighter</option>  
+        <option value="4">EMT / Paramedic</option>  
+        <option value="5">Registered Nurse</option>  
+        <option value="6">Medical Doctor</option>  
+        <option value="7">School Teacher</option>  
+        <option value="8">Student</option>  
+        <option value="9">Garage CrossFitter</option>  
+      </select>
+    </div>
+    <div class="option col-sm-3">
+      <label for="region-input">Region</label>
+      <select class="region-input form-control" name="region-input" (change)="changeRegion($event.target.value)">
+        <option selected value="0">Worldwide</option>        
+        <option value="1">Africa</option>
+        <option value="2">Asia</option>  
+        <option value="3">Australia</option>  
+        <option value="4">Canada East</option>  
+        <option value="5">Canada West</option>  
+        <option value="6">Central East</option>  
+        <option value="7">Europe</option>  
+        <option value="8">Latin America</option>  
+        <option value="9">Mid Atlantic</option>  
+        <option value="10">North Central</option>  
+        <option value="11">North East</option>  
+        <option value="12">Northern California</option>  
+        <option value="13">North West</option>  
+        <option value="14">South Central</option>  
+        <option value="15">South East</option>  
+        <option value="16">Southern California</option>  
+        <option value="17">South West</option>  
+      </select>
+    </div>
   </div>
-  <div class="option">
-    <label for="affiliate">Affiliate</label>
-    <input name="affiliate" class="name-input" (keyup)="searchAffiliate($event.target.value)" type="text">
+  <div class="row">
+    <div class="option col-sm-6">
+      <label for="name">Athlete Name</label>
+      <input name="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
+    </div>
+    <div class="option col-sm-6">
+      <label for="affiliate">Affiliate</label>
+      <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
+    </div>
   </div>
 </div>
 <table class="table table-striped table-hover">
@@ -97,12 +104,12 @@
   </tbody>
 </table>
   <div class="pagination">
-    <button class="first" (click)="changePage(1)">First</button>
-    <button class="previous" (click)="backPage()">Previous</button>
+    <button class="first btn btn-primary" (click)="changePage(1)">First</button>
+    <button class="previous btn btn-primary" (click)="backPage()">Previous</button>
       <a *ngIf="page > 1" (click)="changePage(page - 1)">{{page - 1}}</a>
       <a class="highligh" (click)="changePage(page)">{{page}}</a>
       <a (click)="changePage(page + 1)">{{page + 1}}</a>
       <a (click)="changePage(page + 2)">{{page + 2}}</a>
       <a (click)="changePage(page + 3)">{{page + 3}}</a>      
-    <button class="previous" (click)="nextPage()">Next</button>      
+    <button class="previous btn btn-primary" (click)="nextPage()">Next</button>      
   </div>
