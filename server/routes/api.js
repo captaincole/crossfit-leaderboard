@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     
     let affiliateid = req.query.affiliateid;
     if (affiliateid) {
-        query.where('affiliateid').regex( new RegExp( affiliateid , 'i'))
+        query.where('affiliateid').equals(affiliateid);
     }
 
     let division = parseInt(req.query.division, 10);
