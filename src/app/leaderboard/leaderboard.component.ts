@@ -15,6 +15,7 @@ export class LeaderboardComponent implements OnInit {
   public page = 1;
   public name;
   public nameInput: BehaviorSubject<any> = new BehaviorSubject<any>('');
+  public affiliateInput: BehaviorSubject<any> = new BehaviorSubject('');
   public affiliate;
   public division;
   public occupation;
@@ -26,9 +27,10 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit() {
     this.data = this.athletes.getAthletes(10, 0, null, null);
     this.nameInput.debounceTime(300).subscribe( (data) => {
-      if (data) {
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
-      }
+    });
+    this.affiliateInput.debounceTime(300).subscribe( (data) => {
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     });
   }
 
@@ -46,7 +48,7 @@ export class LeaderboardComponent implements OnInit {
   searchAffiliate(afid) {
     this.page = 1;
     this.affiliate = afid;
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    this.affiliateInput.next(afid);
   }
 
   changePage(pageNum) {

@@ -48,8 +48,6 @@ router.get('/', (req, res) => {
 
     query.exec((err, users) => {
         if (err) throw err;
-
-        console.log(users);
         res.status(200).json({
             data: users
         });

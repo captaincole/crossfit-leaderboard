@@ -217,15 +217,17 @@ var LeaderboardComponent = (function () {
         this.limit = 10;
         this.page = 1;
         this.nameInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"]('');
+        this.affiliateInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["BehaviorSubject"]('');
         this.loading = false;
     }
     LeaderboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.data = this.athletes.getAthletes(10, 0, null, null);
         this.nameInput.debounceTime(300).subscribe(function (data) {
-            if (data) {
-                _this.data = _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region);
-            }
+            _this.data = _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region);
+        });
+        this.affiliateInput.debounceTime(300).subscribe(function (data) {
+            _this.data = _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region);
         });
     };
     LeaderboardComponent.prototype.changeLimit = function (num) {
@@ -240,7 +242,7 @@ var LeaderboardComponent = (function () {
     LeaderboardComponent.prototype.searchAffiliate = function (afid) {
         this.page = 1;
         this.affiliate = afid;
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+        this.affiliateInput.next(afid);
     };
     LeaderboardComponent.prototype.changePage = function (pageNum) {
         if (pageNum >= 1) {
