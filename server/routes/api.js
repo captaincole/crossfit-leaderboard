@@ -12,9 +12,9 @@ router.get('/', (req, res) => {
         query.where('name').regex( new RegExp( name , 'i'))
     }
     
-    let affiliate = req.query.affiliate;
-    if (affiliate) {
-        query.where('affiliate').regex( new RegExp( affiliate , 'i'))
+    let affiliateid = req.query.affiliateid;
+    if (affiliateid) {
+        query.where('affiliateid').regex( new RegExp( affiliateid , 'i'))
     }
 
     let division = parseInt(req.query.division, 10);
@@ -22,15 +22,17 @@ router.get('/', (req, res) => {
         query.where('division').equals(division);
     }
 
-    let occupation = req.query.affiliate;
-    if (affiliate) {
-        query.where('affiliate').regex( new RegExp( affiliate , 'i'))
+    let occupation = req.query.occupation;
+    if (occupation) {
+        query.where('occupation').equals(occupation);
     }
 
     let region = parseInt(req.query.region, 10);
     if (region && region !== 0) {
         query.where('regionid').equals(region);
     }
+    
+    query.where('scores.0.scoredisplay').ne('--');
 
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
@@ -41,6 +43,8 @@ router.get('/', (req, res) => {
     if (offset) {
         query.skip(offset);
     }
+
+    query.sort({'scores.0.workoutrank': 1})
 
     query.exec((err, users) => {
         if (err) throw err;

@@ -34,9 +34,9 @@ export class LeaderboardComponent implements OnInit {
     this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
   }
 
-  searchAffiliate(affName) {
+  searchAffiliate(afid) {
     this.page = 1;
-    this.affiliate = affName;
+    this.affiliate = afid;
     this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
   }
 

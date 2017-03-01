@@ -13,7 +13,7 @@ export class AthletesService {
       params.set('name', name);
     }
     if (affiliate) {
-      params.set('affiliate', affiliate);
+      params.set('affiliateid', affiliate);
     }
     if (division && division !== 0) {
       params.set('division', JSON.stringify(division));
