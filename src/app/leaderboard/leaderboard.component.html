@@ -93,14 +93,13 @@
     <tr>
       <th class="number">Position</th>
       <th class="text">Name</th>
-      <th class="number">Points</th>
       <th class="text">Region</th>
       <th class="text">Affiliate</th>
       <th class="text">17.1</th>
     </tr>
   </thead>
   <tbody>
-    <tr app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i + (limit * (page -1))" [athlete]="athlete"></tr>
+    <tr app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i + (limit * (page -1)) + 1" [athlete]="athlete"></tr>
   </tbody>
 </table>
   <div class="pagination">
@@ -112,4 +111,7 @@
       <a (click)="changePage(page + 2)">{{page + 2}}</a>
       <a (click)="changePage(page + 3)">{{page + 3}}</a>      
     <button class="previous btn btn-primary" (click)="nextPage()">Next</button>      
+  </div>
+  <div class="footer">
+    For comments or feature requests email: andrew@38plank.com
   </div>

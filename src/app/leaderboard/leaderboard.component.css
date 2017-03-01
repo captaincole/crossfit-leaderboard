@@ -48,3 +48,8 @@ table {
 .option select {
     width: 100%;
 }
+
+.footer {
+    text-align: center;
+    color: slategrey;
+}

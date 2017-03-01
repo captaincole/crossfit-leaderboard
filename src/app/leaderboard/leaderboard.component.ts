@@ -76,6 +76,6 @@ export class LeaderboardComponent implements OnInit {
   }
 
   goToSite() {
-    window.location.href = 'www.38plank.com';
+    window.location.href = 'http://www.38plank.com';
   }
 }
