@@ -223,10 +223,10 @@ var LeaderboardComponent = (function () {
     LeaderboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.data = this.athletes.getAthletes(10, 0, null, null);
-        this.nameInput.debounceTime(300).subscribe(function (data) {
+        this.nameInput.debounceTime(200).subscribe(function (data) {
             _this.data = _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region);
         });
-        this.affiliateInput.debounceTime(300).subscribe(function (data) {
+        this.affiliateInput.debounceTime(200).subscribe(function (data) {
             _this.data = _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region);
         });
     };

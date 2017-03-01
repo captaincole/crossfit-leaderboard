@@ -26,10 +26,10 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.athletes.getAthletes(10, 0, null, null);
-    this.nameInput.debounceTime(300).subscribe( (data) => {
+    this.nameInput.debounceTime(200).subscribe( (data) => {
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     });
-    this.affiliateInput.debounceTime(300).subscribe( (data) => {
+    this.affiliateInput.debounceTime(200).subscribe( (data) => {
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     });
   }
