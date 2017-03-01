@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AthletesService } from '../athletes.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/throttleTime';
 
 @Component({
   selector: 'app-leaderboard',
@@ -26,10 +26,10 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.athletes.getAthletes(10, 0, null, null);
-    this.nameInput.debounceTime(200).subscribe( (data) => {
+    this.nameInput.throttleTime(200).subscribe( (val) => {
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     });
-    this.affiliateInput.debounceTime(200).subscribe( (data) => {
+    this.affiliateInput.throttleTime(200).subscribe( (val) => {
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     });
   }
