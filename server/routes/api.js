@@ -31,10 +31,11 @@ router.get('/', (req, res) => {
     if (region && region !== 0) {
         query.where('regionid').equals(region);
     }
-    
-    query.where('scores.0.scoredisplay').ne('--');
+
     query.where('name').exists();
 
+    query.sort({'overallrank': 1});
+    
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
         query.limit(parseInt(limit, 10));
@@ -44,8 +45,6 @@ router.get('/', (req, res) => {
     if (offset) {
         query.skip(offset);
     }
-
-    query.sort({'overallrank': 1})
 
     query.exec((err, users) => {
         if (err) throw err;

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AthletesService } from '../athletes.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-leaderboard',
@@ -12,15 +14,22 @@ export class LeaderboardComponent implements OnInit {
   public limit = 10;
   public page = 1;
   public name;
+  public nameInput: BehaviorSubject<any> = new BehaviorSubject<any>('');
   public affiliate;
   public division;
   public occupation;
   public region;
+  public loading = false;
 
   constructor(public athletes: AthletesService) { }
 
   ngOnInit() {
     this.data = this.athletes.getAthletes(10, 0, null, null);
+    this.nameInput.debounceTime(300).subscribe( (data) => {
+      if (data) {
+        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+      }
+    });
   }
 
   changeLimit(num) {
@@ -31,7 +40,7 @@ export class LeaderboardComponent implements OnInit {
   searchNames(name) {
     this.page = 1;
     this.name = name;
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    this.nameInput.next(name);
   }
 
   searchAffiliate(afid) {

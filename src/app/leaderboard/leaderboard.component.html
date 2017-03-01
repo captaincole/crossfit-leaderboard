@@ -102,6 +102,9 @@
     <tr app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i + (limit * (page -1)) + 1" [athlete]="athlete"></tr>
   </tbody>
 </table>
+  <div *ngIf="loading" class="loading-bar">
+    Loading Results
+  </div>
   <div class="pagination">
     <button class="first btn btn-primary" (click)="changePage(1)">First</button>
     <button class="previous btn btn-primary" (click)="backPage()">Previous</button>
