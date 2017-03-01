@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 // create a schema
 var athleteSchema = new Schema({
   name: String,
-  overallrank: String,
+  overallrank: Number,
   overallscore: String,
   regionid: String,
   region: String,

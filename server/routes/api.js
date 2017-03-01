@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
         query.skip(offset);
     }
 
-    query.sort({'scores.0.workoutrank': 1})
+    query.sort({'overallrank': 1})
 
     query.exec((err, users) => {
         if (err) throw err;
