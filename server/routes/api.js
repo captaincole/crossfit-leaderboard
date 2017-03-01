@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
         console.log(users);
         res.status(200).json({
-            message: users
+            data: users
         });
     });
 });

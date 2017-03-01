@@ -4,17 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { ScoreComponent } from './score/score.component';
+import { AthletesService } from './athletes.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LeaderboardComponent,
+    ScoreComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    AthletesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

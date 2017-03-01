@@ -1,0 +1,10 @@
+<div class="leaderboard-header">
+  leaderboard works! 
+<div>
+<table class="leaderboard-table">
+  <tr>
+    <th>Name</th>
+    <th>Region</th>
+  </tr>
+  <app-score class="score" *ngFor="let athlete of data | async" [athlete]="athlete"></app-score>
+</table>
