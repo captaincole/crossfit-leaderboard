@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AthletesService } from '../athletes.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/throttleTime';
 
 @Component({
@@ -14,8 +14,8 @@ export class LeaderboardComponent implements OnInit {
   public limit = 10;
   public page = 1;
   public name;
-  public nameInput: BehaviorSubject<any> = new BehaviorSubject<any>('');
-  public affiliateInput: BehaviorSubject<any> = new BehaviorSubject('');
+  public nameInput: Subject<any> = new Subject<any>();
+  public affiliateInput: Subject<any> = new Subject();
   public affiliate;
   public division;
   public occupation;
@@ -27,6 +27,7 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit() {
     this.data = this.athletes.getAthletes(10, 0, null, null);
     this.nameInput.throttleTime(200).subscribe( (val) => {
+        console.log('Name Trigger: ' , val);
         this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
     });
     this.affiliateInput.throttleTime(200).subscribe( (val) => {
@@ -42,6 +43,7 @@ export class LeaderboardComponent implements OnInit {
   searchNames(name) {
     this.page = 1;
     this.name = name;
+    console.log('Name: ' , name);
     this.nameInput.next(name);
   }
 
