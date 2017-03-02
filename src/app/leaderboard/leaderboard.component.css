@@ -13,11 +13,25 @@
     font-family: 'Avenir Next';
     font-weight: bold;
     width: 100%;
-    text-align: center;
-    margin: auto;
     margin-top: 10px;
     color: #314655;
     letter-spacing: -2px;
+    border-bottom: 1px solid #314655;
+    font-size: 20px;
+}
+
+.left-header {
+    float: left;
+    margin-left: 20px;
+}
+
+.right-header {
+    float: right;
+}
+
+.right-header a {
+    display: inline;
+    padding-left: 10px;
 }
 .subheader .number {
     color: #06D3CA;
@@ -59,4 +73,15 @@ table {
 .footer {
     text-align: center;
     color: slategrey;
+    width: 100%;
+    margin: auto;
+    padding: 5px;
+}
+
+.footer .text {
+    display: block;
+}
+.footer .download img {
+    display: inline;
+    margin: 0;
 }

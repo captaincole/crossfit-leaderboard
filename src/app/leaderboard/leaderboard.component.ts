@@ -92,4 +92,12 @@ export class LeaderboardComponent implements OnInit {
   goToSite() {
     window.location.href = 'http://www.38plank.com';
   }
+
+  downloadItunes() {
+    window.location.href = 'https://itunes.apple.com/us/app/38plank-workouts-to-reach/id1155623794?mt=8';
+  }
+
+  downloadGoogle() {
+    window.location.href = 'https://play.google.com/store/apps/developer?id=38Plank';
+  }
 }

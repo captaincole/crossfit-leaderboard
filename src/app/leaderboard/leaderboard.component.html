@@ -1,6 +1,3 @@
-<h2 class="subheader" (click)="goToSite()">
-  <span class="number">38</span>Plank
-</h2>
 <h2 class="leaderboard-header">
   CrossFit Open 2017 Leaderboard
 </h2>
@@ -115,5 +112,9 @@
     <button class="previous btn btn-primary" (click)="nextPage()">Next</button>   
   </div>
   <div class="footer">
-    For comments or feature requests email: andrew@38plank.com
+    <div class="text">If you like this leaderboard, you will like the 38Plank app. Create and share workouts with your friends with 38Plank</div>
+    <div class="download">
+      <img (click)="downloadItunes()" src="assets/appstoredownload.png" width="120px" height="40px">
+      <img (click)="downloadGoogle()" src="assets/googleplaydownload.png" width="120px" height="57px">
+    </div>
   </div>
