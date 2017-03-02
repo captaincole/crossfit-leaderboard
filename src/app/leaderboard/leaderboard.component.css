@@ -49,6 +49,13 @@ table {
     width: 100%;
 }
 
+.page-input {
+    width: 4em;
+}
+.gotopage {
+    display: inline-block;
+}
+
 .footer {
     text-align: center;
     color: slategrey;

@@ -52,9 +52,12 @@ export class LeaderboardComponent implements OnInit {
   }
 
   changePage(pageNum) {
-    if (pageNum >= 1) {
-      this.page = pageNum;
+    let newPage = parseInt(pageNum, 10);
+    if (newPage >= 1) {
+      this.page = newPage;
       this.data = this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region);
+    } else {
+      this.page = this.page;
     }
   }
 

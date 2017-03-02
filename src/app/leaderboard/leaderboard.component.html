@@ -108,12 +108,11 @@
   <div class="pagination">
     <button class="first btn btn-primary" (click)="changePage(1)">First</button>
     <button class="previous btn btn-primary" (click)="backPage()">Previous</button>
-      <a *ngIf="page > 1" (click)="changePage(page - 1)">{{page - 1}}</a>
-      <a class="highligh" (click)="changePage(page)">{{page}}</a>
-      <a (click)="changePage(page + 1)">{{page + 1}}</a>
-      <a (click)="changePage(page + 2)">{{page + 2}}</a>
-      <a (click)="changePage(page + 3)">{{page + 3}}</a>      
-    <button class="previous btn btn-primary" (click)="nextPage()">Next</button>      
+    <div class="gotopage">
+      <label for="gotopage">Go To Page</label>
+      <input class="form-control page-input" (keyup)="changePage($event.target.value)" type="number" [value]="page">
+    </div>  
+    <button class="previous btn btn-primary" (click)="nextPage()">Next</button>   
   </div>
   <div class="footer">
     For comments or feature requests email: andrew@38plank.com
