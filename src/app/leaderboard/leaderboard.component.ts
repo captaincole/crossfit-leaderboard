@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AthletesService } from '../athletes.service';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/throttleTime';
 
 @Component({
@@ -10,19 +11,22 @@ import 'rxjs/add/operator/throttleTime';
 })
 export class LeaderboardComponent implements OnInit {
 
-  public data;
+  public data: Observable<any>;
   public limit = 10;
   public page = 1;
   public name;
-  public nameInput: Subject<any> = new Subject<any>();
-  public affiliateInput: Subject<any> = new Subject();
+  public nameInput: Subject<any>;
+  public affiliateInput: Subject<any>;
   public affiliate;
   public division;
   public occupation;
   public region;
   public loading = false;
 
-  constructor(public athletes: AthletesService) { }
+  constructor(public athletes: AthletesService) {
+    this.nameInput = new Subject<any>();
+    this.affiliateInput = new Subject<any>();
+  }
 
   ngOnInit() {
     this.data = this.athletes.getAthletes(10, 0, null, null);

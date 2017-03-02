@@ -216,9 +216,9 @@ var LeaderboardComponent = (function () {
         this.athletes = athletes;
         this.limit = 10;
         this.page = 1;
+        this.loading = false;
         this.nameInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
         this.affiliateInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        this.loading = false;
     }
     LeaderboardComponent.prototype.ngOnInit = function () {
         var _this = this;
