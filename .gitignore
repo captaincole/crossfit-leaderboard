@@ -44,3 +44,4 @@ Thumbs.db
 !.elasticbeanstalk/*.global.yml
 
 # config
+config.js
