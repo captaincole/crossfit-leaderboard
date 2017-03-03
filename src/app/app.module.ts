@@ -10,12 +10,14 @@ import { AthletesService } from './athletes.service';
 import { MaterialModule } from '@angular/material';
 
 import 'hammerjs';
+import { ExtraDataComponent } from './extra-data/extra-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeaderboardComponent,
-    ScoreComponent
+    ScoreComponent,
+    ExtraDataComponent
   ],
   imports: [
     BrowserModule,

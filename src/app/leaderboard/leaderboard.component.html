@@ -96,8 +96,13 @@
       <th class="text">17.1</th>
     </tr>
   </thead>
-  <tbody>
-    <tr app-score class="score" *ngFor="let athlete of data; let i = index;" [position]="i + (limit * (page -1)) + 1" [athlete]="athlete"></tr>
+  <tbody *ngFor="let athlete of data; let i = index;" >
+    <tr app-score class="score"
+      [moreData]="moreData[i]"
+      [position]="i + (limit * (page -1)) + 1" 
+      [athlete]="athlete" (click)="showMoreData(i)"></tr>
+    <tr app-extra-data class="moreData" [hidden]="!moreData[i]" [athlete]="athlete">
+    </tr>
   </tbody>
 </table>
   <div class="pagination">

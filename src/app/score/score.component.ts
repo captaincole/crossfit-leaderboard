@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ScoreComponent implements OnInit {
   @Input() athlete;
   @Input() position;
-  public moreData: boolean = false;
+  @Input() moreData: boolean = false;
   constructor() { }
 
   ngOnInit() {

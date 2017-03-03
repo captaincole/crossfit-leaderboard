@@ -22,6 +22,7 @@ export class LeaderboardComponent implements OnInit {
   public occupation;
   public region;
   public loading = false;
+  public moreData: any = {};
 
   constructor(public athletes: AthletesService) {
     this.nameInput = new Subject<any>();
@@ -50,6 +51,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   changeLimit(num) {
+    this.moreData = {};
     this.loading = true;
     this.limit = parseInt(num, 10);
     this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
@@ -59,6 +61,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   searchNames(name) {
+    this.moreData = {};
     this.loading = true;
     this.page = 1;
     this.name = name;
@@ -67,6 +70,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   searchAffiliate(afid) {
+    this.moreData = {};
     this.loading = true;
     this.page = 1;
     this.affiliate = afid;
@@ -76,6 +80,7 @@ export class LeaderboardComponent implements OnInit {
   changePage(pageNum) {
     let newPage = parseInt(pageNum, 10);
     if (newPage >= 1) {
+      this.moreData = {};
       this.loading = true;
       this.page = newPage;
       this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
@@ -88,6 +93,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   changeDivision(division) {
+    this.moreData = {};
     this.loading = true;
     this.page = 1;
     this.division = parseInt(division, 10);
@@ -98,6 +104,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   changeOccupation(occupationNum) {
+    this.moreData = {};
     this.loading = true;
     this.page = 1;
     this.occupation = occupationNum;
@@ -108,6 +115,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   changeRegion(region) {
+    this.moreData = {};
     this.loading = true;
     this.region = parseInt(region, 10);
     this.page = 1;
@@ -125,6 +133,14 @@ export class LeaderboardComponent implements OnInit {
 
   nextPage() {
     this.changePage(this.page + 1);
+  }
+
+  showMoreData(index) {
+    if (this.moreData[index]) {
+      this.moreData[index] = false;
+    } else {
+      this.moreData[index] = true;
+    }
   }
 
   goToSite() {
