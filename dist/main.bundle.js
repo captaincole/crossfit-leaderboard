@@ -364,9 +364,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ScoreComponent = (function () {
     function ScoreComponent() {
+        this.moreData = false;
     }
     ScoreComponent.prototype.ngOnInit = function () {
         console.log('Athlete Recieved');
+    };
+    ScoreComponent.prototype.getMoreData = function () {
+        this.moreData = !this.moreData;
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
@@ -444,7 +448,7 @@ module.exports = "<h2 class=\"leaderboard-header\">\n  CrossFit Open 2017 Leader
 /***/ 770:
 /***/ (function(module, exports) {
 
-module.exports = "\n<th scope=\"row\">{{position}}</th>\n<td class=\"text\">{{athlete.name}}</td>\n<td class=\"text\">{{athlete.region}}</td>\n<td class=\"text\">{{athlete.affiliateid}}</td>\n<td class=\"text\">{{athlete.scores[0]?.scoredisplay}}</td>"
+module.exports = "\n<th scope=\"row\">{{position}}</th>\n<td class=\"text\">{{athlete.name}}</td>\n<td class=\"text\">{{athlete.region}}</td>\n<td class=\"text\">{{athlete.affiliateid}}</td>\n<td class=\"text\">{{athlete.scores[0]?.scoredisplay}}</td>\n<tr *ngIf=\"moreData\">\n  <td class=\"text\">Athlete Id: {{athlete.userid}}<td>\n</tr>"
 
 /***/ }),
 

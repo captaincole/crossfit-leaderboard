@@ -4,3 +4,6 @@
 <td class="text">{{athlete.region}}</td>
 <td class="text">{{athlete.affiliateid}}</td>
 <td class="text">{{athlete.scores[0]?.scoredisplay}}</td>
+<tr *ngIf="moreData">
+  <td class="text">Athlete Id: {{athlete.userid}}<td>
+</tr>
