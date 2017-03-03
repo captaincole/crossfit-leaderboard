@@ -63,6 +63,11 @@ table {
     width: 100%;
 }
 
+.loading-bar {
+    margin: auto;
+    margin-bottom: -150px;
+}
+
 .page-input {
     width: 4em;
 }

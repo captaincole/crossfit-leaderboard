@@ -11,7 +11,7 @@ import 'rxjs/add/operator/throttleTime';
 })
 export class LeaderboardComponent implements OnInit {
 
-  public data: Observable<any>;
+  public data: Array<any>;
   public limit = 10;
   public page = 1;
   public name;
@@ -29,22 +29,37 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data = this.athletes.getAthletes(10, 0, null, null);
+    this.loading = true;
+    this.athletes.getAthletes(10, 0, null, null).subscribe( (list) => {
+      this.data = list;
+      this.loading = false;
+    });
     this.nameInput.throttleTime(200).subscribe( (val) => {
         console.log('Name Trigger: ' , val);
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+          this.data = list;
+          this.loading = false;
+        });
     });
     this.affiliateInput.throttleTime(200).subscribe( (val) => {
-        this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+          this.data = list;
+          this.loading = false;
+        });
     });
   }
 
   changeLimit(num) {
+    this.loading = true;
     this.limit = parseInt(num, 10);
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+      this.data = list;
+      this.loading = false;
+    });
   }
 
   searchNames(name) {
+    this.loading = true;
     this.page = 1;
     this.name = name;
     console.log('Name: ' , name);
@@ -52,6 +67,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   searchAffiliate(afid) {
+    this.loading = true;
     this.page = 1;
     this.affiliate = afid;
     this.affiliateInput.next(afid);
@@ -60,29 +76,45 @@ export class LeaderboardComponent implements OnInit {
   changePage(pageNum) {
     let newPage = parseInt(pageNum, 10);
     if (newPage >= 1) {
+      this.loading = true;
       this.page = newPage;
-      this.data = this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region);
+      this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+        this.data = list;
+        this.loading = false;
+      });
     } else {
       this.page = this.page;
     }
   }
 
   changeDivision(division) {
+    this.loading = true;
     this.page = 1;
     this.division = parseInt(division, 10);
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+      this.data = list;
+      this.loading = false;
+    });
   }
 
   changeOccupation(occupationNum) {
+    this.loading = true;
     this.page = 1;
     this.occupation = occupationNum;
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+      this.data = list;
+      this.loading = false;
+    });
   }
 
   changeRegion(region) {
+    this.loading = true;
     this.region = parseInt(region, 10);
     this.page = 1;
-    this.data = this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region);
+    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+      this.data = list;
+      this.loading = false;
+    });
   }
 
   backPage() {

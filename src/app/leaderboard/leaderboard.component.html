@@ -85,6 +85,7 @@
     </div>
   </div>
 </div>
+<md-progress-spinner *ngIf="loading" mode="indeterminate" class="loading-bar"></md-progress-spinner>
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -96,10 +97,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i + (limit * (page -1)) + 1" [athlete]="athlete"></tr>
+    <tr app-score class="score" *ngFor="let athlete of data; let i = index;" [position]="i + (limit * (page -1)) + 1" [athlete]="athlete"></tr>
   </tbody>
 </table>
-  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
   <div class="pagination">
     <button class="first btn btn-primary" (click)="changePage(1)">First</button>
     <button class="previous btn btn-primary" (click)="backPage()">Previous</button>
