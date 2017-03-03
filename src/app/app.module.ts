@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { ScoreComponent } from './score/score.component';
 import { AthletesService } from './athletes.service';
+import { MaterialModule } from '@angular/material';
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { AthletesService } from './athletes.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule
   ],
   providers: [
     AthletesService

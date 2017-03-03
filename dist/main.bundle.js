@@ -1,12 +1,12 @@
 webpackJsonp([1,4],{
 
-/***/ 302:
+/***/ 411:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(618);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AthletesService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -59,7 +59,7 @@ var AthletesService = (function () {
 
 /***/ }),
 
-/***/ 344:
+/***/ 459:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -68,20 +68,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 344;
+webpackEmptyContext.id = 459;
 
 
 /***/ }),
 
-/***/ 345:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(586);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(456);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(607);
 
 
 
@@ -94,7 +94,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 452:
+/***/ 606:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -116,10 +116,10 @@ var AppComponent = (function () {
         this.title = 'App';
     }
     AppComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Component */])({
             selector: 'app-root',
-            template: __webpack_require__(613),
-            styles: [__webpack_require__(610)]
+            template: __webpack_require__(768),
+            styles: [__webpack_require__(765)]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -129,18 +129,21 @@ var AppComponent = (function () {
 
 /***/ }),
 
-/***/ 453:
+/***/ 607:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(423);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__leaderboard_leaderboard_component__ = __webpack_require__(454);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__score_score_component__ = __webpack_require__(455);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__athletes_service__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(606);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__leaderboard_leaderboard_component__ = __webpack_require__(608);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__score_score_component__ = __webpack_require__(609);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__athletes_service__ = __webpack_require__(411);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_hammerjs__ = __webpack_require__(763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_hammerjs__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -151,6 +154,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -172,7 +177,8 @@ var AppModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MaterialModule */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_7__athletes_service__["a" /* AthletesService */]
@@ -187,15 +193,15 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 454:
+/***/ 608:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__athletes_service__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__athletes_service__ = __webpack_require__(411);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttleTime__ = __webpack_require__(619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttleTime__ = __webpack_require__(784);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttleTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_throttleTime__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeaderboardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -289,10 +295,10 @@ var LeaderboardComponent = (function () {
         window.location.href = 'https://play.google.com/store/apps/developer?id=38Plank';
     };
     LeaderboardComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Component */])({
             selector: 'app-leaderboard',
-            template: __webpack_require__(614),
-            styles: [__webpack_require__(611)]
+            template: __webpack_require__(769),
+            styles: [__webpack_require__(766)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__athletes_service__["a" /* AthletesService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__athletes_service__["a" /* AthletesService */]) === 'function' && _a) || Object])
     ], LeaderboardComponent);
@@ -303,7 +309,7 @@ var LeaderboardComponent = (function () {
 
 /***/ }),
 
-/***/ 455:
+/***/ 609:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -334,10 +340,10 @@ var ScoreComponent = (function () {
         __metadata('design:type', Object)
     ], ScoreComponent.prototype, "position", void 0);
     ScoreComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Component */])({
             selector: '[app-score]',
-            template: __webpack_require__(615),
-            styles: [__webpack_require__(612)]
+            template: __webpack_require__(770),
+            styles: [__webpack_require__(767)]
         }), 
         __metadata('design:paramtypes', [])
     ], ScoreComponent);
@@ -347,7 +353,7 @@ var ScoreComponent = (function () {
 
 /***/ }),
 
-/***/ 456:
+/***/ 610:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -363,55 +369,55 @@ var environment = {
 
 /***/ }),
 
-/***/ 610:
+/***/ 765:
 /***/ (function(module, exports) {
 
 module.exports = ""
 
 /***/ }),
 
-/***/ 611:
+/***/ 766:
 /***/ (function(module, exports) {
 
 module.exports = ".leaderboard-header {\n    width: 100%;\n    text-align: center;\n    font-family: 'Roboto', sans-serif;\n    margin-top: 5px;\n}\n\n.leaderboard-options {\n    margin-bottom: 10px;\n}\n\n.subheader {\n    font-family: 'Avenir Next';\n    font-weight: bold;\n    width: 100%;\n    margin-top: 10px;\n    color: #314655;\n    letter-spacing: -2px;\n    border-bottom: 1px solid #314655;\n    font-size: 20px;\n}\n\n.left-header {\n    float: left;\n    margin-left: 20px;\n}\n\n.right-header {\n    float: right;\n}\n\n.right-header a {\n    display: inline;\n    padding-left: 10px;\n}\n.subheader .number {\n    color: #06D3CA;\n}\n\ntable {\n    border: 1px solid #EEEEEE;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n}\n\n.pagination {\n    width: 100%;\n    text-align: center;\n}\n\n.pagination a {\n    padding: 0px 5px;\n    color: #337ab7;\n}\n.option label {\n    padding-top: 5px;\n    display: block;\n}\n.option input {\n    width: 100%;\n}\n\n.option select {\n    width: 100%;\n}\n\n.page-input {\n    width: 4em;\n}\n.gotopage {\n    display: inline-block;\n}\n\n.footer {\n    text-align: center;\n    color: slategrey;\n    width: 100%;\n    margin: auto;\n    padding: 5px;\n}\n\n.footer .text {\n    display: block;\n}\n.footer .download img {\n    display: inline;\n    margin: 0;\n}"
 
 /***/ }),
 
-/***/ 612:
+/***/ 767:
 /***/ (function(module, exports) {
 
 module.exports = ""
 
 /***/ }),
 
-/***/ 613:
+/***/ 768:
 /***/ (function(module, exports) {
 
 module.exports = "<app-leaderboard></app-leaderboard>\n\n"
 
 /***/ }),
 
-/***/ 614:
+/***/ 769:
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"leaderboard-header\">\n  CrossFit Open 2017 Leaderboard\n</h2>\n<div class=\"leaderboard-options container\">\n  <div class=\"row\">\n    <div class=\"option col-sm-3\">\n      <label for=\"limit-input\">Number of Results</label>\n      <select class=\"limit-input form-control\" name=\"limit-input\" (change)=\"changeLimit($event.target.value)\">\n        <option selected value=\"10\">10</option>\n        <option value=\"25\">25</option>\n        <option value=\"50\">50</option>    \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"division-input\">Division</label>\n      <select class=\"division-input form-control\" name=\"division-input\" (change)=\"changeDivision($event.target.value)\">\n        <option selected value=\"0\">Both</option>        \n        <option value=\"1\">Individual Men</option>\n        <option value=\"2\">Individual Women</option>  \n        <option value=\"15\">Teenage Girls (14-15)</option>\n        <option value=\"14\">Teenage Boys (14-15)</option>  \n        <option value=\"17\">Teenage Girls (16-17)</option>\n        <option value=\"16\">Teenage Boys (16-17)</option>\n        <option value=\"19\">Masters Women (35-39)</option>  \n        <option value=\"18\">Masters Men (35-39)</option>  \n        <option value=\"13\">Masters Women (40-44)</option>  \n        <option value=\"12\">Masters Men (40-44)</option>  \n        <option value=\"4\">Masters Women (45-49)</option>  \n        <option value=\"3\">Masters Men (45-49)</option>  \n        <option value=\"6\">Masters Women (50-54)</option>  \n        <option value=\"5\">Masters Men (50-54)</option>          \n        <option value=\"8\">Masters Women (55-59)</option>          \n        <option value=\"7\">Masters Men (55-59)</option>          \n        <option value=\"10\">Masters Women (60+)</option>          \n        <option value=\"9\">Masters Men (60+)</option>          \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"occupation-input\">Occupation</label>\n      <select class=\"occupation-input form-control\" name=\"occupation-input\" (change)=\"changeOccupation($event.target.value)\">\n        <option selected value=\"0\">All</option>        \n        <option value=\"1\">Military Servicemember</option>\n        <option value=\"2\">Law Enforcement Officer</option>  \n        <option value=\"3\">Firefighter</option>  \n        <option value=\"4\">EMT / Paramedic</option>  \n        <option value=\"5\">Registered Nurse</option>  \n        <option value=\"6\">Medical Doctor</option>  \n        <option value=\"7\">School Teacher</option>  \n        <option value=\"8\">Student</option>  \n        <option value=\"9\">Garage CrossFitter</option>  \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"region-input\">Region</label>\n      <select class=\"region-input form-control\" name=\"region-input\" (change)=\"changeRegion($event.target.value)\">\n        <option selected value=\"0\">Worldwide</option>        \n        <option value=\"1\">Africa</option>\n        <option value=\"2\">Asia</option>  \n        <option value=\"3\">Australia</option>  \n        <option value=\"4\">Canada East</option>  \n        <option value=\"5\">Canada West</option>  \n        <option value=\"6\">Central East</option>  \n        <option value=\"7\">Europe</option>  \n        <option value=\"8\">Latin America</option>  \n        <option value=\"9\">Mid Atlantic</option>  \n        <option value=\"10\">North Central</option>  \n        <option value=\"11\">North East</option>  \n        <option value=\"12\">Northern California</option>  \n        <option value=\"13\">North West</option>  \n        <option value=\"14\">South Central</option>  \n        <option value=\"15\">South East</option>  \n        <option value=\"16\">Southern California</option>  \n        <option value=\"17\">South West</option>  \n      </select>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"option col-sm-6\">\n      <label for=\"name\">Athlete Name</label>\n      <input name=\"name\" class=\"name-input form-control\" (keyup)=\"searchNames($event.target.value)\" type=\"text\">\n    </div>\n    <div class=\"option col-sm-6\">\n      <label for=\"affiliate\">Affiliate</label>\n      <input name=\"affiliate\" class=\"name-input form-control\" (keyup)=\"searchAffiliate($event.target.value)\" type=\"text\">\n    </div>\n  </div>\n</div>\n<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th class=\"number\">Position</th>\n      <th class=\"text\">Name</th>\n      <th class=\"text\">Region</th>\n      <th class=\"text\">Affiliate Id</th>\n      <th class=\"text\">17.1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr app-score class=\"score\" *ngFor=\"let athlete of data | async; let i = index;\" [position]=\"i + (limit * (page -1)) + 1\" [athlete]=\"athlete\"></tr>\n  </tbody>\n</table>\n  <div *ngIf=\"loading\" class=\"loading-bar\">\n    Loading Results\n  </div>\n  <div class=\"pagination\">\n    <button class=\"first btn btn-primary\" (click)=\"changePage(1)\">First</button>\n    <button class=\"previous btn btn-primary\" (click)=\"backPage()\">Previous</button>\n    <div class=\"gotopage\">\n      <label for=\"gotopage\">Go To Page</label>\n      <input class=\"form-control page-input\" (keyup)=\"changePage($event.target.value)\" type=\"number\" [value]=\"page\">\n    </div>  \n    <button class=\"previous btn btn-primary\" (click)=\"nextPage()\">Next</button>   \n  </div>\n  <div class=\"footer\">\n    <div class=\"text\">If you like this leaderboard, you will like the 38Plank app. Create and share workouts with your friends with 38Plank</div>\n    <div class=\"download\">\n      <img (click)=\"downloadItunes()\" src=\"assets/appstoredownload.png\" width=\"120px\" height=\"40px\">\n      <img (click)=\"downloadGoogle()\" src=\"assets/googleplaydownload.png\" width=\"120px\" height=\"57px\">\n    </div>\n  </div>"
+module.exports = "<h2 class=\"leaderboard-header\">\n  CrossFit Open 2017 Leaderboard\n</h2>\n<div class=\"leaderboard-options container\">\n  <div class=\"row\">\n    <div class=\"option col-sm-3\">\n      <label for=\"limit-input\">Number of Results</label>\n      <select class=\"limit-input form-control\" name=\"limit-input\" (change)=\"changeLimit($event.target.value)\">\n        <option selected value=\"10\">10</option>\n        <option value=\"25\">25</option>\n        <option value=\"50\">50</option>    \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"division-input\">Division</label>\n      <select class=\"division-input form-control\" name=\"division-input\" (change)=\"changeDivision($event.target.value)\">\n        <option selected value=\"0\">Both</option>        \n        <option value=\"1\">Individual Men</option>\n        <option value=\"2\">Individual Women</option>  \n        <option value=\"15\">Teenage Girls (14-15)</option>\n        <option value=\"14\">Teenage Boys (14-15)</option>  \n        <option value=\"17\">Teenage Girls (16-17)</option>\n        <option value=\"16\">Teenage Boys (16-17)</option>\n        <option value=\"19\">Masters Women (35-39)</option>  \n        <option value=\"18\">Masters Men (35-39)</option>  \n        <option value=\"13\">Masters Women (40-44)</option>  \n        <option value=\"12\">Masters Men (40-44)</option>  \n        <option value=\"4\">Masters Women (45-49)</option>  \n        <option value=\"3\">Masters Men (45-49)</option>  \n        <option value=\"6\">Masters Women (50-54)</option>  \n        <option value=\"5\">Masters Men (50-54)</option>          \n        <option value=\"8\">Masters Women (55-59)</option>          \n        <option value=\"7\">Masters Men (55-59)</option>          \n        <option value=\"10\">Masters Women (60+)</option>          \n        <option value=\"9\">Masters Men (60+)</option>          \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"occupation-input\">Occupation</label>\n      <select class=\"occupation-input form-control\" name=\"occupation-input\" (change)=\"changeOccupation($event.target.value)\">\n        <option selected value=\"0\">All</option>        \n        <option value=\"1\">Military Servicemember</option>\n        <option value=\"2\">Law Enforcement Officer</option>  \n        <option value=\"3\">Firefighter</option>  \n        <option value=\"4\">EMT / Paramedic</option>  \n        <option value=\"5\">Registered Nurse</option>  \n        <option value=\"6\">Medical Doctor</option>  \n        <option value=\"7\">School Teacher</option>  \n        <option value=\"8\">Student</option>  \n        <option value=\"9\">Garage CrossFitter</option>  \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"region-input\">Region</label>\n      <select class=\"region-input form-control\" name=\"region-input\" (change)=\"changeRegion($event.target.value)\">\n        <option selected value=\"0\">Worldwide</option>        \n        <option value=\"1\">Africa</option>\n        <option value=\"2\">Asia</option>  \n        <option value=\"3\">Australia</option>  \n        <option value=\"4\">Canada East</option>  \n        <option value=\"5\">Canada West</option>  \n        <option value=\"6\">Central East</option>  \n        <option value=\"7\">Europe</option>  \n        <option value=\"8\">Latin America</option>  \n        <option value=\"9\">Mid Atlantic</option>  \n        <option value=\"10\">North Central</option>  \n        <option value=\"11\">North East</option>  \n        <option value=\"12\">Northern California</option>  \n        <option value=\"13\">North West</option>  \n        <option value=\"14\">South Central</option>  \n        <option value=\"15\">South East</option>  \n        <option value=\"16\">Southern California</option>  \n        <option value=\"17\">South West</option>  \n      </select>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"option col-sm-6\">\n      <label for=\"name\">Athlete Name</label>\n      <input name=\"name\" class=\"name-input form-control\" (keyup)=\"searchNames($event.target.value)\" type=\"text\">\n    </div>\n    <div class=\"option col-sm-6\">\n      <label for=\"affiliate\">Affiliate</label>\n      <input name=\"affiliate\" class=\"name-input form-control\" (keyup)=\"searchAffiliate($event.target.value)\" type=\"text\">\n    </div>\n  </div>\n</div>\n<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th class=\"number\">Position</th>\n      <th class=\"text\">Name</th>\n      <th class=\"text\">Region</th>\n      <th class=\"text\">Affiliate Id</th>\n      <th class=\"text\">17.1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr app-score class=\"score\" *ngFor=\"let athlete of data | async; let i = index;\" [position]=\"i + (limit * (page -1)) + 1\" [athlete]=\"athlete\"></tr>\n  </tbody>\n</table>\n  <md-progress-spinner mode=\"indeterminate\"></md-progress-spinner>\n  <div class=\"pagination\">\n    <button class=\"first btn btn-primary\" (click)=\"changePage(1)\">First</button>\n    <button class=\"previous btn btn-primary\" (click)=\"backPage()\">Previous</button>\n    <div class=\"gotopage\">\n      <label for=\"gotopage\">Go To Page</label>\n      <input class=\"form-control page-input\" (keyup)=\"changePage($event.target.value)\" type=\"number\" [value]=\"page\">\n    </div>  \n    <button class=\"previous btn btn-primary\" (click)=\"nextPage()\">Next</button>   \n  </div>\n  <div class=\"footer\">\n    <div class=\"text\">Hosting for this leaderboard is provided by 38Plank. Check out their app below if you want to create, share, and complete workouts with your friends</div>\n    <div class=\"download\">\n      <img (click)=\"downloadItunes()\" src=\"assets/appstoredownload.png\" width=\"120px\" height=\"40px\">\n      <img (click)=\"downloadGoogle()\" src=\"assets/googleplaydownload.png\" width=\"120px\" height=\"57px\">\n    </div>\n  </div>"
 
 /***/ }),
 
-/***/ 615:
+/***/ 770:
 /***/ (function(module, exports) {
 
 module.exports = "\n<th scope=\"row\">{{position}}</th>\n<td class=\"text\">{{athlete.name}}</td>\n<td class=\"text\">{{athlete.region}}</td>\n<td class=\"text\">{{athlete.affiliateid}}</td>\n<td class=\"text\">{{athlete.scores[0]?.scoredisplay}}</td>"
 
 /***/ }),
 
-/***/ 637:
+/***/ 821:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(345);
+module.exports = __webpack_require__(460);
 
 
 /***/ })
 
-},[637]);
+},[821]);
 //# sourceMappingURL=main.bundle.map

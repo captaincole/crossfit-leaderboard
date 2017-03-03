@@ -99,9 +99,7 @@
     <tr app-score class="score" *ngFor="let athlete of data | async; let i = index;" [position]="i + (limit * (page -1)) + 1" [athlete]="athlete"></tr>
   </tbody>
 </table>
-  <div *ngIf="loading" class="loading-bar">
-    Loading Results
-  </div>
+  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
   <div class="pagination">
     <button class="first btn btn-primary" (click)="changePage(1)">First</button>
     <button class="previous btn btn-primary" (click)="backPage()">Previous</button>
@@ -112,7 +110,7 @@
     <button class="previous btn btn-primary" (click)="nextPage()">Next</button>   
   </div>
   <div class="footer">
-    <div class="text">If you like this leaderboard, you will like the 38Plank app. Create and share workouts with your friends with 38Plank</div>
+    <div class="text">Hosting for this leaderboard is provided by 38Plank. Check out their app below if you want to create, share, and complete workouts with your friends</div>
     <div class="download">
       <img (click)="downloadItunes()" src="assets/appstoredownload.png" width="120px" height="40px">
       <img (click)="downloadGoogle()" src="assets/googleplaydownload.png" width="120px" height="57px">
