@@ -40,6 +40,22 @@ router.get('/', (req, res) => {
         query.where('age').gt(parseInt(req.query.minage, 10) - 1);
     }
 
+    if (req.query.minweight) {
+        query.where('weightval').gt(parseInt(req.query.minweight, 10) * 0.453592);
+    }
+
+    if (req.query.maxweight) {
+        query.where('weightval').lt(parseInt(req.query.maxweight, 10) * 0.453592);
+    }
+
+    if (req.query.minheight) {
+        query.where('heightval').gt(parseInt(req.query.minheight, 10) * 30.48);
+    }
+
+    if (req.query.maxheight) {
+        query.where('heightval').lt(parseInt(req.query.maxheight, 10) * 30.48);
+    }
+
     query.where('name').exists();
     query.sort({'overallrank': 1});
     

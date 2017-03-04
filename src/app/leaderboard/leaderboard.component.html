@@ -105,6 +105,26 @@
       <md-slider (change)="changeMaxAge($event.value)" class="max-age-slider" thumbLabel="true" min="18" max="80" step="1" value="80" tickInterval="10"></md-slider>
     </div>
   </div>
+  <div class="row">
+    <div class="min-heigh col-sm-6">
+      <label> Min Height (ft): {{minheight}} </label>
+      <md-slider (change)="changeMinHeight($event.value)" class="min-age-slider" thumbLabel="true" min="4" max="7" step=".1" value="5" tickInterval=".5"></md-slider>
+    </div>
+    <div class="max-height col-sm-6">
+      <label> Max Height (ft): {{maxheight}} </label>
+      <md-slider (change)="changeMaxHeight($event.value)" class="max-age-slider" thumbLabel="true" min="4" max="7" step=".1" value="7" tickInterval=".5"></md-slider>
+    </div>
+  </div>
+  <div class="row">
+    <div class="min-age col-sm-6">
+      <label> Min Weight (lbs): {{minweight}} </label>
+      <md-slider (change)="changeMinWeight($event.value)" class="min-age-slider" thumbLabel="true" min="100" max="350" step="5" value="100" tickInterval="20"></md-slider>
+    </div>
+    <div class="max-age col-sm-6">
+      <label> Max Weight (lbs): {{maxweight}} </label>
+      <md-slider (change)="changeMaxAge($event.value)" class="max-age-slider" thumbLabel="true" min="100" max="350" step="5" value="300" tickInterval="20"></md-slider>
+  </div>
+  </div>
 </div>
 <md-progress-spinner *ngIf="loading" mode="indeterminate" class="loading-bar"></md-progress-spinner>
 <table class="table table-striped table-hover">

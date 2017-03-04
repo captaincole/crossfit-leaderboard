@@ -10,7 +10,9 @@ export class AthletesService {
   getAthletes(limit: number, offset: number,
               name?: string, affiliate?: string,
               division?: number, occupation?: number,
-              region?: number, minage?: number, maxage?: number) {
+              region?: number, minage?: number, maxage?: number,
+              minweight?: number, maxweight?: number,
+              minheight?: number, maxheight?: number) {
 
     let params = new URLSearchParams();
     if (name) {
@@ -38,6 +40,22 @@ export class AthletesService {
       params.set('maxage' , JSON.stringify(maxage));
     }
 
+    if (minweight) {
+      params.set('minweight', JSON.stringify(minweight));
+    }
+
+    if (maxweight) {
+      params.set('maxweight' , JSON.stringify(maxweight));
+    }
+
+    if (minheight) {
+      params.set('minheight', JSON.stringify(minheight));
+    }
+
+    if (maxheight) {
+      params.set('maxheight' , JSON.stringify(maxheight));
+    }
+    
     params.set('offset' , JSON.stringify(offset));
     params.set('limit', JSON.stringify(limit));
     return this.http.get('/api', { search: params }).map( (res) => {

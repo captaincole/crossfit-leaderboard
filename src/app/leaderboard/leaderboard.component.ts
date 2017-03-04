@@ -25,7 +25,11 @@ export class LeaderboardComponent implements OnInit {
   public maxage: number = 80;
   public loading = false;
   public moreData: any = {};
-  public showAdvanced: boolean = false;
+  public showAdvanced: boolean = true;
+  public minweight: number;
+  public maxweight: number;
+  public minheight: number;
+  public maxheight: number;
 
   constructor(public athletes: AthletesService) {
     this.nameInput = new Subject<any>();
@@ -60,6 +64,17 @@ export class LeaderboardComponent implements OnInit {
   }
 
   reloadData() {
+    if (this.showAdvanced) {
+        this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name,
+         this.affiliate, this.division,
+          this.occupation, this.region,
+          this.minage, this.maxage,
+          this.minweight, this.maxweight,
+          this.minheight, this.maxheight).subscribe( (list) => {
+          this.data = list;
+          this.loading = false;
+        }); 
+    } else {
       this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name,
          this.affiliate, this.division,
           this.occupation, this.region,
@@ -67,6 +82,7 @@ export class LeaderboardComponent implements OnInit {
           this.data = list;
           this.loading = false;
         });
+    }
   }
 
   changeLimit(num) {
@@ -160,6 +176,35 @@ export class LeaderboardComponent implements OnInit {
     this.page = 1;
     this.reloadData();
   }
+
+  changeMinWeight(val) {
+    this.loading = true;
+    this.minweight = parseInt(val, 10);
+    this.page = 1;
+    this.reloadData();
+  }
+  
+  changeMaxWeight(val) {
+    this.loading = true;
+    this.maxweight = parseInt(val, 10);
+    this.page = 1;
+    this.reloadData();
+  }
+
+  changeMinHeight(val) {
+    this.loading = true;
+    this.minheight = parseInt(val, 10);
+    this.page = 1;
+    this.reloadData();
+  }
+
+  changeMaxHeight(val) {
+    this.loading = true;
+    this.maxheight = parseInt(val, 10);
+    this.page = 1;
+    this.reloadData();
+  }
+
 
   goToSite() {
     window.location.href = 'http://www.38plank.com';
