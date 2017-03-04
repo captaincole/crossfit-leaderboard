@@ -5,6 +5,24 @@
     margin-top: 5px;
 }
 
+.header {
+    text-align: center;
+    color: slategrey;
+    width: 100%;
+    margin: auto;
+    padding: 5px;
+}
+
+.num {
+    color: #06D3CA;
+}
+.logo {
+    font-family: 'Avenir Next';
+    font-weight: bold;
+    font-size: 28px;
+    color: #314655;
+}
+
 .leaderboard-options {
     margin-bottom: 10px;
 }
