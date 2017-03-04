@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ExtraDataComponent implements OnInit {
   @Input() athlete;
+  
   constructor() { }
 
   ngOnInit() {
