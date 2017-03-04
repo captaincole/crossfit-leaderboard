@@ -16,10 +16,12 @@
 .num {
     color: #06D3CA;
 }
+
 .reg {
     font-weight: normal;
     font-size: 26px;
 }
+
 .logo {
     font-family: 'Avenir Next';
     font-weight: bold;
@@ -64,6 +66,16 @@
 }
 .subheader .number {
     color: #06D3CA;
+}
+
+.min-age-slider {
+    display: block;
+    width: 100%;
+}
+
+.max-age-slider {
+    display: block;
+    width: 100%;
 }
 
 table {

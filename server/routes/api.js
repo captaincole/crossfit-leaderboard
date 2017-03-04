@@ -32,6 +32,14 @@ router.get('/', (req, res) => {
         query.where('regionid').equals(region);
     }
 
+    if (req.query.maxage) {
+        query.where('age').lt(parseInt(req.query.maxage, 10) + 1);
+    }
+
+    if (req.query.minage) {
+        query.where('age').gt(parseInt(req.query.minage, 10) - 1);
+    }
+
     query.where('name').exists();
     query.sort({'overallrank': 1});
     

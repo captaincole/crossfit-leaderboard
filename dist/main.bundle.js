@@ -25,7 +25,7 @@ var AthletesService = (function () {
     function AthletesService(http) {
         this.http = http;
     }
-    AthletesService.prototype.getAthletes = function (limit, offset, name, affiliate, division, occupation, region) {
+    AthletesService.prototype.getAthletes = function (limit, offset, name, affiliate, division, occupation, region, minage, maxage) {
         var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* URLSearchParams */]();
         if (name) {
             params.set('name', name);
@@ -41,6 +41,12 @@ var AthletesService = (function () {
         }
         if (region) {
             params.set('region', JSON.stringify(region));
+        }
+        if (minage) {
+            params.set('minage', JSON.stringify(minage));
+        }
+        if (maxage) {
+            params.set('maxage', JSON.stringify(maxage));
         }
         params.set('offset', JSON.stringify(offset));
         params.set('limit', JSON.stringify(limit));
@@ -264,6 +270,8 @@ var LeaderboardComponent = (function () {
         this.athletes = athletes;
         this.limit = 10;
         this.page = 1;
+        this.minage = 18;
+        this.maxage = 80;
         this.loading = false;
         this.moreData = {};
         this.nameInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
@@ -278,16 +286,23 @@ var LeaderboardComponent = (function () {
         });
         this.nameInput.throttleTime(200).subscribe(function (val) {
             console.log('Name Trigger: ', val);
-            _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region).subscribe(function (list) {
+            _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region, _this.minage, _this.maxage).subscribe(function (list) {
                 _this.data = list;
                 _this.loading = false;
             });
         });
         this.affiliateInput.throttleTime(200).subscribe(function (val) {
-            _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region).subscribe(function (list) {
+            _this.athletes.getAthletes(_this.limit, 0, _this.name, _this.affiliate, _this.division, _this.occupation, _this.region, _this.minage, _this.maxage).subscribe(function (list) {
                 _this.data = list;
                 _this.loading = false;
             });
+        });
+    };
+    LeaderboardComponent.prototype.reloadData = function () {
+        var _this = this;
+        this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
+            _this.data = list;
+            _this.loading = false;
         });
     };
     LeaderboardComponent.prototype.changeLimit = function (num) {
@@ -295,7 +310,7 @@ var LeaderboardComponent = (function () {
         this.moreData = {};
         this.loading = true;
         this.limit = parseInt(num, 10);
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe(function (list) {
+        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
             _this.data = list;
             _this.loading = false;
         });
@@ -322,7 +337,7 @@ var LeaderboardComponent = (function () {
             this.moreData = {};
             this.loading = true;
             this.page = newPage;
-            this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region).subscribe(function (list) {
+            this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
                 _this.data = list;
                 _this.loading = false;
             });
@@ -337,32 +352,24 @@ var LeaderboardComponent = (function () {
         this.loading = true;
         this.page = 1;
         this.division = parseInt(division, 10);
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe(function (list) {
+        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
             _this.data = list;
             _this.loading = false;
         });
     };
     LeaderboardComponent.prototype.changeOccupation = function (occupationNum) {
-        var _this = this;
         this.moreData = {};
         this.loading = true;
         this.page = 1;
         this.occupation = occupationNum;
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe(function (list) {
-            _this.data = list;
-            _this.loading = false;
-        });
+        this.reloadData();
     };
     LeaderboardComponent.prototype.changeRegion = function (region) {
-        var _this = this;
         this.moreData = {};
         this.loading = true;
         this.region = parseInt(region, 10);
         this.page = 1;
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe(function (list) {
-            _this.data = list;
-            _this.loading = false;
-        });
+        this.reloadData();
     };
     LeaderboardComponent.prototype.backPage = function () {
         if (this.page > 1) {
@@ -379,6 +386,18 @@ var LeaderboardComponent = (function () {
         else {
             this.moreData[index] = true;
         }
+    };
+    LeaderboardComponent.prototype.changeMinAge = function (val) {
+        this.loading = true;
+        this.minage = parseInt(val, 10);
+        this.page = 1;
+        this.reloadData();
+    };
+    LeaderboardComponent.prototype.changeMaxAge = function (val) {
+        this.loading = true;
+        this.maxage = parseInt(val, 10);
+        this.page = 1;
+        this.reloadData();
     };
     LeaderboardComponent.prototype.goToSite = function () {
         window.location.href = 'http://www.38plank.com';
@@ -489,7 +508,7 @@ module.exports = ""
 /***/ 768:
 /***/ (function(module, exports) {
 
-module.exports = ".leaderboard-header {\n    width: 100%;\n    text-align: center;\n    font-family: 'Roboto', sans-serif;\n    margin-top: 5px;\n}\n\n.header {\n    text-align: center;\n    color: slategrey;\n    width: 100%;\n    margin: auto;\n    padding: 5px;\n}\n\n.num {\n    color: #06D3CA;\n}\n.reg {\n    font-weight: normal;\n    font-size: 26px;\n}\n.logo {\n    font-family: 'Avenir Next';\n    font-weight: bold;\n    font-size: 28px;\n    color: #314655;\n}\n\n.leaderboard-options {\n    margin-bottom: 10px;\n}\n\n.subheader {\n    font-family: 'Avenir Next';\n    font-weight: bold;\n    width: 100%;\n    margin-top: 10px;\n    color: #314655;\n    letter-spacing: -2px;\n    border-bottom: 1px solid #314655;\n    font-size: 20px;\n}\n\n.container .score {\n    display: table-row;\n}\n.container .moredata {\n    display: table-row;\n}\n\n.left-header {\n    float: left;\n    margin-left: 20px;\n}\n\n.right-header {\n    float: right;\n}\n\n.right-header a {\n    display: inline;\n    padding-left: 10px;\n}\n.subheader .number {\n    color: #06D3CA;\n}\n\ntable {\n    border: 1px solid #EEEEEE;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n}\n\n.pagination {\n    width: 100%;\n    text-align: center;\n}\n\n.pagination a {\n    padding: 0px 5px;\n    color: #337ab7;\n}\n.option label {\n    padding-top: 5px;\n    display: block;\n}\n.option input {\n    width: 100%;\n}\n\n.option select {\n    width: 100%;\n}\n\n.loading-bar {\n    margin: auto;\n    margin-bottom: -150px;\n}\n\n.page-input {\n    width: 4em;\n}\n.gotopage {\n    display: inline-block;\n}\n\n.footer {\n    text-align: center;\n    color: slategrey;\n    width: 100%;\n    margin: auto;\n    padding: 5px;\n}\n\n.footer .text {\n    display: block;\n}\n.footer .download img {\n    display: inline;\n    margin: 0;\n}"
+module.exports = ".leaderboard-header {\n    width: 100%;\n    text-align: center;\n    font-family: 'Roboto', sans-serif;\n    margin-top: 5px;\n}\n\n.header {\n    text-align: center;\n    color: slategrey;\n    width: 100%;\n    margin: auto;\n    padding: 5px;\n}\n\n.num {\n    color: #06D3CA;\n}\n\n.reg {\n    font-weight: normal;\n    font-size: 26px;\n}\n\n.logo {\n    font-family: 'Avenir Next';\n    font-weight: bold;\n    font-size: 28px;\n    color: #314655;\n}\n\n.leaderboard-options {\n    margin-bottom: 10px;\n}\n\n.subheader {\n    font-family: 'Avenir Next';\n    font-weight: bold;\n    width: 100%;\n    margin-top: 10px;\n    color: #314655;\n    letter-spacing: -2px;\n    border-bottom: 1px solid #314655;\n    font-size: 20px;\n}\n\n.container .score {\n    display: table-row;\n}\n.container .moredata {\n    display: table-row;\n}\n\n.left-header {\n    float: left;\n    margin-left: 20px;\n}\n\n.right-header {\n    float: right;\n}\n\n.right-header a {\n    display: inline;\n    padding-left: 10px;\n}\n.subheader .number {\n    color: #06D3CA;\n}\n\n.min-age-slider {\n    display: block;\n    width: 100%;\n}\n\n.max-age-slider {\n    display: block;\n    width: 100%;\n}\n\ntable {\n    border: 1px solid #EEEEEE;\n    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);\n}\n\n.pagination {\n    width: 100%;\n    text-align: center;\n}\n\n.pagination a {\n    padding: 0px 5px;\n    color: #337ab7;\n}\n.option label {\n    padding-top: 5px;\n    display: block;\n}\n.option input {\n    width: 100%;\n}\n\n.option select {\n    width: 100%;\n}\n\n.loading-bar {\n    margin: auto;\n    margin-bottom: -150px;\n}\n\n.page-input {\n    width: 4em;\n}\n.gotopage {\n    display: inline-block;\n}\n\n.footer {\n    text-align: center;\n    color: slategrey;\n    width: 100%;\n    margin: auto;\n    padding: 5px;\n}\n\n.footer .text {\n    display: block;\n}\n.footer .download img {\n    display: inline;\n    margin: 0;\n}"
 
 /***/ }),
 
@@ -510,14 +529,14 @@ module.exports = "<app-leaderboard></app-leaderboard>\n\n"
 /***/ 771:
 /***/ (function(module, exports) {
 
-module.exports = "<td colspan=\"5\" class=\"container\">\n  <div class=\"athleteid col-xs-6 col-sm-4\">\n    Athlete Id: {{athlete.userid}}\n  </div>\n  <div class=\"affiliateid col-xs-6 col-sm-4\">\n    Affiliate: {{athlete.affiliateid}}\n  </div>\n  <div class=\"age col-xs-6 col-sm-4\">\n    Age: {{athlete.age}}\n  </div>\n  <div class=\"height col-xs-6 col-sm-4\">\n    Height: {{athlete.height}}\n  </div>\n  <div class=\"weight col-xs-6 col-sm-4\">\n    Weight: {{athlete.weight}}\n  </div>\n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Region Rank: {{athlete.regionrank}}\n  </div>\n</td>"
+module.exports = "<td colspan=\"6\" class=\"container\">\n  <div class=\"athleteid col-xs-6 col-sm-4\">\n    Athlete Id: {{athlete.userid}}\n  </div>\n  <div class=\"affiliateid col-xs-6 col-sm-4\">\n    Affiliate: {{athlete.affiliateid}}\n  </div>\n  <div class=\"age col-xs-6 col-sm-4\">\n    Age: {{athlete.age}}\n  </div>\n  <div class=\"height col-xs-6 col-sm-4\">\n    Height: {{athlete.height}}\n  </div>\n  <div class=\"weight col-xs-6 col-sm-4\">\n    Weight: {{athlete.weight}}\n  </div>\n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Region Rank: {{athlete.regionrank}}\n  </div>\n</td>"
 
 /***/ }),
 
 /***/ 772:
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"header\">\n    <div class=\"download\">\n      <div class=\"logo\"><span class=\"num\">38</span>Plank<span class=\"reg\"> Workouts to reach your fitness goals</span></div>\n      <div class=\"text\">\"Want to improve your open scores next year? Download the 38Plank and start logging your training now\"</div>\n      <img (click)=\"downloadItunes()\" src=\"assets/appstoredownload.png\" width=\"120px\" height=\"40px\">\n      <img (click)=\"downloadGoogle()\" src=\"assets/googleplaydownload.png\" width=\"120px\" height=\"57px\">\n    </div>\n  </div>\n<h2 class=\"leaderboard-header\">\n  CrossFit Open 2017 Leaderboard\n</h2>\n<div class=\"leaderboard-options container\">\n  <div class=\"row\">\n    <div class=\"option col-sm-3\">\n      <label for=\"limit-input\">Number of Results</label>\n      <select class=\"limit-input form-control\" name=\"limit-input\" (change)=\"changeLimit($event.target.value)\">\n        <option selected value=\"10\">10</option>\n        <option value=\"25\">25</option>\n        <option value=\"50\">50</option>    \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"division-input\">Division</label>\n      <select class=\"division-input form-control\" name=\"division-input\" (change)=\"changeDivision($event.target.value)\">\n        <option selected value=\"0\">Both</option>        \n        <option value=\"1\">Individual Men</option>\n        <option value=\"2\">Individual Women</option>  \n        <option value=\"15\">Teenage Girls (14-15)</option>\n        <option value=\"14\">Teenage Boys (14-15)</option>  \n        <option value=\"17\">Teenage Girls (16-17)</option>\n        <option value=\"16\">Teenage Boys (16-17)</option>\n        <option value=\"19\">Masters Women (35-39)</option>  \n        <option value=\"18\">Masters Men (35-39)</option>  \n        <option value=\"13\">Masters Women (40-44)</option>  \n        <option value=\"12\">Masters Men (40-44)</option>  \n        <option value=\"4\">Masters Women (45-49)</option>  \n        <option value=\"3\">Masters Men (45-49)</option>  \n        <option value=\"6\">Masters Women (50-54)</option>  \n        <option value=\"5\">Masters Men (50-54)</option>          \n        <option value=\"8\">Masters Women (55-59)</option>          \n        <option value=\"7\">Masters Men (55-59)</option>          \n        <option value=\"10\">Masters Women (60+)</option>          \n        <option value=\"9\">Masters Men (60+)</option>          \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"occupation-input\">Occupation</label>\n      <select class=\"occupation-input form-control\" name=\"occupation-input\" (change)=\"changeOccupation($event.target.value)\">\n        <option selected value=\"0\">All</option>        \n        <option value=\"1\">Military Servicemember</option>\n        <option value=\"2\">Law Enforcement Officer</option>  \n        <option value=\"3\">Firefighter</option>  \n        <option value=\"4\">EMT / Paramedic</option>  \n        <option value=\"5\">Registered Nurse</option>  \n        <option value=\"6\">Medical Doctor</option>  \n        <option value=\"7\">School Teacher</option>  \n        <option value=\"8\">Student</option>  \n        <option value=\"9\">Garage CrossFitter</option>  \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"region-input\">Region</label>\n      <select class=\"region-input form-control\" name=\"region-input\" (change)=\"changeRegion($event.target.value)\">\n        <option selected value=\"0\">Worldwide</option>        \n        <option value=\"1\">Africa</option>\n        <option value=\"2\">Asia</option>  \n        <option value=\"3\">Australia</option>  \n        <option value=\"4\">Canada East</option>  \n        <option value=\"5\">Canada West</option>  \n        <option value=\"6\">Central East</option>  \n        <option value=\"7\">Europe</option>  \n        <option value=\"8\">Latin America</option>  \n        <option value=\"9\">Mid Atlantic</option>  \n        <option value=\"10\">North Central</option>  \n        <option value=\"11\">North East</option>  \n        <option value=\"12\">Northern California</option>  \n        <option value=\"13\">North West</option>  \n        <option value=\"14\">South Central</option>  \n        <option value=\"15\">South East</option>  \n        <option value=\"16\">Southern California</option>  \n        <option value=\"17\">South West</option>  \n      </select>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"option col-sm-6\">\n      <label for=\"name\">Athlete Name</label>\n      <input name=\"name\" class=\"name-input form-control\" (keyup)=\"searchNames($event.target.value)\" type=\"text\">\n    </div>\n    <div class=\"option col-sm-6\">\n      <label for=\"affiliate\">Affiliate</label>\n      <input name=\"affiliate\" class=\"name-input form-control\" (keyup)=\"searchAffiliate($event.target.value)\" type=\"text\">\n    </div>\n  </div>\n</div>\n<md-progress-spinner *ngIf=\"loading\" mode=\"indeterminate\" class=\"loading-bar\"></md-progress-spinner>\n<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th class=\"number\">Position</th>\n      <th class=\"text\">Name</th>\n      <th class=\"text\">Region</th>\n      <th class=\"text\">Affiliate Id</th>\n      <th class=\"text\">17.1</th>\n      <th class=\"text\">17.2</th>\n    </tr>\n  </thead>\n  <tbody *ngFor=\"let athlete of data; let i = index;\" >\n    <tr app-score class=\"score\"\n      [moreData]=\"moreData[i]\"\n      [position]=\"i + (limit * (page -1)) + 1\" \n      [athlete]=\"athlete\" (click)=\"showMoreData(i)\"></tr>\n    <tr app-extra-data class=\"moreData\" [hidden]=\"!moreData[i]\" [athlete]=\"athlete\">\n    </tr>\n  </tbody>\n</table>\n  <div class=\"pagination\">\n    <button class=\"first btn btn-primary\" (click)=\"changePage(1)\">First</button>\n    <button class=\"previous btn btn-primary\" (click)=\"backPage()\">Previous</button>\n    <div class=\"gotopage\">\n      <label for=\"gotopage\">Go To Page</label>\n      <input class=\"form-control page-input\" (keyup)=\"changePage($event.target.value)\" type=\"number\" [value]=\"page\">\n    </div>  \n    <button class=\"previous btn btn-primary\" (click)=\"nextPage()\">Next</button>   \n  </div>\n  <div class=\"footer\">\n    <div>Data Updated: Friday March 3rd 11:00PM PCT</div>\n    <div>Questions or comments? Email me at andrew@38plank.com . This leaderboard is an open-source project, and you can contriubte by going to https://github.com/thielCole/crossfit-leaderboard</div>\n  </div>"
+module.exports = "\n  <div class=\"header\">\n    <div class=\"download\">\n      <div class=\"logo\"><span class=\"num\">38</span>Plank<span class=\"reg\">: Workouts to reach your fitness goals</span></div>\n      <div class=\"text\">\"Want to improve your open scores next year? Download the 38Plank and start logging your training now\"</div>\n      <img (click)=\"downloadItunes()\" src=\"assets/appstoredownload.png\" width=\"120px\" height=\"40px\">\n      <img (click)=\"downloadGoogle()\" src=\"assets/googleplaydownload.png\" width=\"120px\" height=\"57px\">\n    </div>\n  </div>\n<h2 class=\"leaderboard-header\">\n  CrossFit Open 2017 Leaderboard\n</h2>\n<div class=\"leaderboard-options container\">\n  <div class=\"row\">\n    <div class=\"option col-sm-3\">\n      <label for=\"limit-input\">Number of Results</label>\n      <select class=\"limit-input form-control\" name=\"limit-input\" (change)=\"changeLimit($event.target.value)\">\n        <option selected value=\"10\">10</option>\n        <option value=\"25\">25</option>\n        <option value=\"50\">50</option>    \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"division-input\">Division</label>\n      <select class=\"division-input form-control\" name=\"division-input\" (change)=\"changeDivision($event.target.value)\">\n        <option selected value=\"0\">Both</option>        \n        <option value=\"1\">Individual Men</option>\n        <option value=\"2\">Individual Women</option>  \n        <option value=\"15\">Teenage Girls (14-15)</option>\n        <option value=\"14\">Teenage Boys (14-15)</option>  \n        <option value=\"17\">Teenage Girls (16-17)</option>\n        <option value=\"16\">Teenage Boys (16-17)</option>\n        <option value=\"19\">Masters Women (35-39)</option>  \n        <option value=\"18\">Masters Men (35-39)</option>  \n        <option value=\"13\">Masters Women (40-44)</option>  \n        <option value=\"12\">Masters Men (40-44)</option>  \n        <option value=\"4\">Masters Women (45-49)</option>  \n        <option value=\"3\">Masters Men (45-49)</option>  \n        <option value=\"6\">Masters Women (50-54)</option>  \n        <option value=\"5\">Masters Men (50-54)</option>          \n        <option value=\"8\">Masters Women (55-59)</option>          \n        <option value=\"7\">Masters Men (55-59)</option>          \n        <option value=\"10\">Masters Women (60+)</option>          \n        <option value=\"9\">Masters Men (60+)</option>          \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"occupation-input\">Occupation</label>\n      <select class=\"occupation-input form-control\" name=\"occupation-input\" (change)=\"changeOccupation($event.target.value)\">\n        <option selected value=\"0\">All</option>        \n        <option value=\"1\">Military Servicemember</option>\n        <option value=\"2\">Law Enforcement Officer</option>  \n        <option value=\"3\">Firefighter</option>  \n        <option value=\"4\">EMT / Paramedic</option>  \n        <option value=\"5\">Registered Nurse</option>  \n        <option value=\"6\">Medical Doctor</option>  \n        <option value=\"7\">School Teacher</option>  \n        <option value=\"8\">Student</option>  \n        <option value=\"9\">Garage CrossFitter</option>  \n      </select>\n    </div>\n    <div class=\"option col-sm-3\">\n      <label for=\"region-input\">Region</label>\n      <select class=\"region-input form-control\" name=\"region-input\" (change)=\"changeRegion($event.target.value)\">\n        <option selected value=\"0\">Worldwide</option>        \n        <option value=\"1\">Africa</option>\n        <option value=\"2\">Asia</option>  \n        <option value=\"3\">Australia</option>  \n        <option value=\"4\">Canada East</option>  \n        <option value=\"5\">Canada West</option>  \n        <option value=\"6\">Central East</option>  \n        <option value=\"7\">Europe</option>  \n        <option value=\"8\">Latin America</option>  \n        <option value=\"9\">Mid Atlantic</option>  \n        <option value=\"10\">North Central</option>  \n        <option value=\"11\">North East</option>  \n        <option value=\"12\">Northern California</option>  \n        <option value=\"13\">North West</option>  \n        <option value=\"14\">South Central</option>  \n        <option value=\"15\">South East</option>  \n        <option value=\"16\">Southern California</option>  \n        <option value=\"17\">South West</option>  \n      </select>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"option col-sm-6\">\n      <label for=\"name\">Athlete Name</label>\n      <input name=\"name\" class=\"name-input form-control\" (keyup)=\"searchNames($event.target.value)\" type=\"text\">\n    </div>\n    <div class=\"option col-sm-6\">\n      <label for=\"affiliate\">Affiliate</label>\n      <input name=\"affiliate\" class=\"name-input form-control\" (keyup)=\"searchAffiliate($event.target.value)\" type=\"text\">\n    </div>\n  </div>\n</div>\n<div class=\"container advanced-filters\">\n  <div class=\"row\">\n    <div class=\"min-age col-sm-6\">\n      <label> Min Age: {{minage}} </label>\n      <md-slider (change)=\"changeMinAge($event.value)\" class=\"min-age-slider\" thumbLabel=\"true\" min=\"18\" max=\"80\" step=\"1\" value=\"18\" tickInterval=\"10\"></md-slider>\n    </div>\n    <div class=\"max-age col-sm-6\">\n      <label> Max Age: {{maxage}} </label>\n      <md-slider (change)=\"changeMaxAge($event.value)\" class=\"max-age-slider\" thumbLabel=\"true\" min=\"18\" max=\"80\" step=\"1\" value=\"80\" tickInterval=\"10\"></md-slider>\n    </div>\n  </div>\n</div>\n<md-progress-spinner *ngIf=\"loading\" mode=\"indeterminate\" class=\"loading-bar\"></md-progress-spinner>\n<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th class=\"number\">Position</th>\n      <th class=\"text\">Name</th>\n      <th class=\"text\">Region</th>\n      <th class=\"text\">Affiliate Id</th>\n      <th class=\"text\">17.1</th>\n      <th class=\"text\">17.2</th>\n    </tr>\n  </thead>\n  <tbody *ngFor=\"let athlete of data; let i = index;\" >\n    <tr app-score class=\"score\"\n      [moreData]=\"moreData[i]\"\n      [position]=\"i + (limit * (page -1)) + 1\" \n      [athlete]=\"athlete\" (click)=\"showMoreData(i)\"></tr>\n    <tr app-extra-data class=\"moreData\" [hidden]=\"!moreData[i]\" [athlete]=\"athlete\">\n    </tr>\n  </tbody>\n</table>\n  <div class=\"pagination\">\n    <button class=\"first btn btn-primary\" (click)=\"changePage(1)\">First</button>\n    <button class=\"previous btn btn-primary\" (click)=\"backPage()\">Previous</button>\n    <div class=\"gotopage\">\n      <label for=\"gotopage\">Go To Page</label>\n      <input class=\"form-control page-input\" (keyup)=\"changePage($event.target.value)\" type=\"number\" [value]=\"page\">\n    </div>  \n    <button class=\"previous btn btn-primary\" (click)=\"nextPage()\">Next</button>   \n  </div>\n  <div class=\"footer\">\n    <div>Data Updated: Friday March 3rd 11:00PM PCT</div>\n    <div>Questions or comments? Email me at andrew@38plank.com . This leaderboard is an open-source project, and you can contriubte by going to https://github.com/thielCole/crossfit-leaderboard</div>\n  </div>"
 
 /***/ }),
 

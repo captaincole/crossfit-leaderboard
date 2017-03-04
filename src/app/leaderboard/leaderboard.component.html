@@ -1,7 +1,7 @@
 
   <div class="header">
     <div class="download">
-      <div class="logo"><span class="num">38</span>Plank<span class="reg"> Workouts to reach your fitness goals</span></div>
+      <div class="logo"><span class="num">38</span>Plank<span class="reg">: Workouts to reach your fitness goals</span></div>
       <div class="text">"Want to improve your open scores next year? Download the 38Plank and start logging your training now"</div>
       <img (click)="downloadItunes()" src="assets/appstoredownload.png" width="120px" height="40px">
       <img (click)="downloadGoogle()" src="assets/googleplaydownload.png" width="120px" height="57px">
@@ -91,6 +91,18 @@
     <div class="option col-sm-6">
       <label for="affiliate">Affiliate</label>
       <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
+    </div>
+  </div>
+</div>
+<div class="container advanced-filters">
+  <div class="row">
+    <div class="min-age col-sm-6">
+      <label> Min Age: {{minage}} </label>
+      <md-slider (change)="changeMinAge($event.value)" class="min-age-slider" thumbLabel="true" min="18" max="80" step="1" value="18" tickInterval="10"></md-slider>
+    </div>
+    <div class="max-age col-sm-6">
+      <label> Max Age: {{maxage}} </label>
+      <md-slider (change)="changeMaxAge($event.value)" class="max-age-slider" thumbLabel="true" min="18" max="80" step="1" value="80" tickInterval="10"></md-slider>
     </div>
   </div>
 </div>

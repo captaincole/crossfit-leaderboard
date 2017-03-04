@@ -7,7 +7,11 @@ export class AthletesService {
 
   constructor(private http: Http) { }
 
-  getAthletes(limit: number, offset: number, name?: string, affiliate?: string, division?: number, occupation?: number, region?: number) {
+  getAthletes(limit: number, offset: number,
+              name?: string, affiliate?: string,
+              division?: number, occupation?: number,
+              region?: number, minage?: number, maxage?: number) {
+
     let params = new URLSearchParams();
     if (name) {
       params.set('name', name);
@@ -24,6 +28,14 @@ export class AthletesService {
 
     if (region) {
       params.set('region', JSON.stringify(region));
+    }
+
+    if (minage) {
+      params.set('minage', JSON.stringify(minage));
+    }
+
+    if (maxage) {
+      params.set('maxage' , JSON.stringify(maxage));
     }
 
     params.set('offset' , JSON.stringify(offset));

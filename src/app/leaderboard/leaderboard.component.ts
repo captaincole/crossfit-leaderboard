@@ -21,6 +21,8 @@ export class LeaderboardComponent implements OnInit {
   public division;
   public occupation;
   public region;
+  public minage: number = 18;
+  public maxage: number = 80;
   public loading = false;
   public moreData: any = {};
 
@@ -37,24 +39,43 @@ export class LeaderboardComponent implements OnInit {
     });
     this.nameInput.throttleTime(200).subscribe( (val) => {
         console.log('Name Trigger: ' , val);
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+        this.athletes.getAthletes(this.limit, 0, this.name,
+         this.affiliate, this.division,
+         this.occupation, this.region,
+         this.minage, this.maxage).subscribe( (list) => {
           this.data = list;
           this.loading = false;
         });
     });
     this.affiliateInput.throttleTime(200).subscribe( (val) => {
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+        this.athletes.getAthletes(this.limit, 0, this.name,
+         this.affiliate, this.division,
+          this.occupation, this.region,
+          this.minage, this.maxage).subscribe( (list) => {
           this.data = list;
           this.loading = false;
         });
     });
   }
 
+  reloadData() {
+      this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name,
+         this.affiliate, this.division,
+          this.occupation, this.region,
+          this.minage, this.maxage).subscribe( (list) => {
+          this.data = list;
+          this.loading = false;
+        });
+  }
+
   changeLimit(num) {
     this.moreData = {};
     this.loading = true;
     this.limit = parseInt(num, 10);
-    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+    this.athletes.getAthletes(this.limit, 0, this.name,
+     this.affiliate, this.division,
+      this.occupation, this.region,
+      this.minage, this.maxage).subscribe( (list) => {
       this.data = list;
       this.loading = false;
     });
@@ -83,7 +104,10 @@ export class LeaderboardComponent implements OnInit {
       this.moreData = {};
       this.loading = true;
       this.page = newPage;
-      this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+      this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1),
+       this.name, this.affiliate,
+        this.division, this.occupation,
+         this.region, this.minage, this.maxage).subscribe( (list) => {
         this.data = list;
         this.loading = false;
       });
@@ -97,7 +121,10 @@ export class LeaderboardComponent implements OnInit {
     this.loading = true;
     this.page = 1;
     this.division = parseInt(division, 10);
-    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
+    this.athletes.getAthletes(this.limit, 0, this.name,
+     this.affiliate, this.division,
+     this.occupation, this.region,
+     this.minage, this.maxage).subscribe( (list) => {
       this.data = list;
       this.loading = false;
     });
@@ -108,10 +135,7 @@ export class LeaderboardComponent implements OnInit {
     this.loading = true;
     this.page = 1;
     this.occupation = occupationNum;
-    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
-      this.data = list;
-      this.loading = false;
-    });
+    this.reloadData();
   }
 
   changeRegion(region) {
@@ -119,10 +143,7 @@ export class LeaderboardComponent implements OnInit {
     this.loading = true;
     this.region = parseInt(region, 10);
     this.page = 1;
-    this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region).subscribe( (list) => {
-      this.data = list;
-      this.loading = false;
-    });
+    this.reloadData();
   }
 
   backPage() {
@@ -141,6 +162,20 @@ export class LeaderboardComponent implements OnInit {
     } else {
       this.moreData[index] = true;
     }
+  }
+
+  changeMinAge(val) {
+    this.loading = true;
+    this.minage = parseInt(val, 10);
+    this.page = 1;
+    this.reloadData();
+  }
+
+  changeMaxAge(val) {
+    this.loading = true;
+    this.maxage = parseInt(val, 10);
+    this.page = 1;
+    this.reloadData();
   }
 
   goToSite() {
