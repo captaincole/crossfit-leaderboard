@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
     }
 
     query.where('name').exists();
-    query.sort({'score.0.workoutrank': 1});
+    query.sort({'score.overallrank': 1});
     
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
