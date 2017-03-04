@@ -25,6 +25,7 @@ export class LeaderboardComponent implements OnInit {
   public maxage: number = 80;
   public loading = false;
   public moreData: any = {};
+  public showAdvanced: boolean = false;
 
   constructor(public athletes: AthletesService) {
     this.nameInput = new Subject<any>();
@@ -72,13 +73,7 @@ export class LeaderboardComponent implements OnInit {
     this.moreData = {};
     this.loading = true;
     this.limit = parseInt(num, 10);
-    this.athletes.getAthletes(this.limit, 0, this.name,
-     this.affiliate, this.division,
-      this.occupation, this.region,
-      this.minage, this.maxage).subscribe( (list) => {
-      this.data = list;
-      this.loading = false;
-    });
+    this.reloadData();
   }
 
   searchNames(name) {
@@ -104,13 +99,7 @@ export class LeaderboardComponent implements OnInit {
       this.moreData = {};
       this.loading = true;
       this.page = newPage;
-      this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1),
-       this.name, this.affiliate,
-        this.division, this.occupation,
-         this.region, this.minage, this.maxage).subscribe( (list) => {
-        this.data = list;
-        this.loading = false;
-      });
+      this.reloadData();
     } else {
       this.page = this.page;
     }
@@ -121,13 +110,7 @@ export class LeaderboardComponent implements OnInit {
     this.loading = true;
     this.page = 1;
     this.division = parseInt(division, 10);
-    this.athletes.getAthletes(this.limit, 0, this.name,
-     this.affiliate, this.division,
-     this.occupation, this.region,
-     this.minage, this.maxage).subscribe( (list) => {
-      this.data = list;
-      this.loading = false;
-    });
+    this.reloadData();
   }
 
   changeOccupation(occupationNum) {

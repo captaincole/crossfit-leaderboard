@@ -274,6 +274,7 @@ var LeaderboardComponent = (function () {
         this.maxage = 80;
         this.loading = false;
         this.moreData = {};
+        this.showAdvanced = false;
         this.nameInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
         this.affiliateInput = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
     }
@@ -306,14 +307,10 @@ var LeaderboardComponent = (function () {
         });
     };
     LeaderboardComponent.prototype.changeLimit = function (num) {
-        var _this = this;
         this.moreData = {};
         this.loading = true;
         this.limit = parseInt(num, 10);
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
-            _this.data = list;
-            _this.loading = false;
-        });
+        this.reloadData();
     };
     LeaderboardComponent.prototype.searchNames = function (name) {
         this.moreData = {};
@@ -331,31 +328,23 @@ var LeaderboardComponent = (function () {
         this.affiliateInput.next(afid);
     };
     LeaderboardComponent.prototype.changePage = function (pageNum) {
-        var _this = this;
         var newPage = parseInt(pageNum, 10);
         if (newPage >= 1) {
             this.moreData = {};
             this.loading = true;
             this.page = newPage;
-            this.athletes.getAthletes(this.limit, this.limit * (pageNum - 1), this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
-                _this.data = list;
-                _this.loading = false;
-            });
+            this.reloadData();
         }
         else {
             this.page = this.page;
         }
     };
     LeaderboardComponent.prototype.changeDivision = function (division) {
-        var _this = this;
         this.moreData = {};
         this.loading = true;
         this.page = 1;
         this.division = parseInt(division, 10);
-        this.athletes.getAthletes(this.limit, 0, this.name, this.affiliate, this.division, this.occupation, this.region, this.minage, this.maxage).subscribe(function (list) {
-            _this.data = list;
-            _this.loading = false;
-        });
+        this.reloadData();
     };
     LeaderboardComponent.prototype.changeOccupation = function (occupationNum) {
         this.moreData = {};
@@ -529,7 +518,7 @@ module.exports = "<app-leaderboard></app-leaderboard>\n\n"
 /***/ 771:
 /***/ (function(module, exports) {
 
-module.exports = "<td colspan=\"6\" class=\"container\">\n  <div class=\"athleteid col-xs-6 col-sm-4\">\n    Athlete Id: {{athlete.userid}}\n  </div>\n  <div class=\"affiliateid col-xs-6 col-sm-4\">\n    Affiliate: {{athlete.affiliateid}}\n  </div>\n  <div class=\"age col-xs-6 col-sm-4\">\n    Age: {{athlete.age}}\n  </div>\n  <div class=\"height col-xs-6 col-sm-4\">\n    Height: {{athlete.height}}\n  </div>\n  <div class=\"weight col-xs-6 col-sm-4\">\n    Weight: {{athlete.weight}}\n  </div>\n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Region Rank: {{athlete.regionrank}}\n  </div>\n</td>"
+module.exports = "<td colspan=\"6\" class=\"container\">\n  <div class=\"athleteid col-xs-6 col-sm-4\">\n    Athlete Id: {{athlete.userid}}\n  </div>\n  <div class=\"affiliateid col-xs-6 col-sm-4\">\n    Affiliate: {{athlete.affiliateid}}\n  </div>\n  <div class=\"age col-xs-6 col-sm-4\">\n    Age: {{athlete.age}}\n  </div>\n  <div class=\"height col-xs-6 col-sm-4\">\n    Height: {{athlete.height}}\n  </div>\n  <div class=\"weight col-xs-6 col-sm-4\">\n    Weight: {{athlete.weight}}\n  </div>\n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Region Rank: {{athlete.regionrank}}\n  </div>  \n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Worldwide Rank: {{athlete.overallrank}}\n  </div>\n</td>"
 
 /***/ }),
 
