@@ -93,8 +93,6 @@
       <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
     </div>
   </div>
-</div>
-<div class="container advanced-filters">
   <div class="row">
     <div class="min-age col-sm-6">
       <label> Min Age: {{minage}} </label>
@@ -105,6 +103,14 @@
       <md-slider (change)="changeMaxAge($event.value)" class="max-age-slider" thumbLabel="true" min="18" max="80" step="1" value="80" tickInterval="10"></md-slider>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label> Show Advanced Filters</label>
+      <md-slide-toggle class="show-advanced" (change)="showAdvancedFilters($event.checked)"></md-slide-toggle>
+    </div>
+  </div>
+</div>
+<div class="container advanced-filters" *ngIf="showAdvanced">
   <div class="row">
     <div class="min-heigh col-sm-6">
       <label> Min Height (ft): {{minheight}} </label>

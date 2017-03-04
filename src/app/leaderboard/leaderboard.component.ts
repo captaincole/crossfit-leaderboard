@@ -25,7 +25,7 @@ export class LeaderboardComponent implements OnInit {
   public maxage: number = 80;
   public loading = false;
   public moreData: any = {};
-  public showAdvanced: boolean = true;
+  public showAdvanced: boolean = false;
   public minweight: number;
   public maxweight: number;
   public minheight: number;
@@ -203,6 +203,14 @@ export class LeaderboardComponent implements OnInit {
     this.maxheight = parseInt(val, 10);
     this.page = 1;
     this.reloadData();
+  }
+
+  showAdvancedFilters(val) {
+    if (val === false) {
+      this.showAdvanced = false;
+    } else {
+      this.showAdvanced = true;
+    }
   }
 
 

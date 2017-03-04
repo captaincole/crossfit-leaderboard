@@ -104,6 +104,15 @@ table {
     width: 100%;
 }
 
+label {
+    padding-top: 5px;
+}
+
+.show-advanced {
+    width: 150px;
+    display: inline;
+}
+
 .loading-bar {
     margin: auto;
     margin-bottom: -150px;
