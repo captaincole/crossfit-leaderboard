@@ -4,6 +4,8 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/throttleTime';
 
+declare var ga: any;
+
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
@@ -219,10 +221,26 @@ export class LeaderboardComponent implements OnInit {
   }
 
   downloadItunes() {
+    if (ga) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'button',
+        eventAction: 'click',
+        eventLabel: 'itunes'
+      });
+    }
     window.location.href = 'https://itunes.apple.com/us/app/38plank-workouts-to-reach/id1155623794?mt=8';
   }
 
   downloadGoogle() {
+    if (ga) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'button',
+        eventAction: 'click',
+        eventLabel: 'android'
+      });
+    }
     window.location.href = 'https://play.google.com/store/apps/developer?id=38Plank';
   }
 }
