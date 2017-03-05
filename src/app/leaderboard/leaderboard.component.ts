@@ -221,26 +221,20 @@ export class LeaderboardComponent implements OnInit {
   }
 
   downloadItunes() {
-    if (ga) {
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'button',
-        eventAction: 'click',
-        eventLabel: 'itunes'
+      ga('send', 'event', {
+        eventCategory: 'Download Redirect',
+        eventAction: 'Click',
+        eventLabel: 'Itunes'
       });
-    }
-    window.location.href = 'https://itunes.apple.com/us/app/38plank-workouts-to-reach/id1155623794?mt=8';
+    window.open('https://itunes.apple.com/us/app/38plank-workouts-to-reach/id1155623794?mt=8');
   }
 
   downloadGoogle() {
-    if (ga) {
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'button',
-        eventAction: 'click',
-        eventLabel: 'android'
+      ga('send', 'event', {
+        eventCategory: 'Download Redirect',
+        eventAction: 'Click',
+        eventLabel: 'Android'
       });
-    }
-    window.location.href = 'https://play.google.com/store/apps/developer?id=38Plank';
+    window.open('https://play.google.com/store/apps/developer?id=38Plank');
   }
 }

@@ -444,10 +444,20 @@ var LeaderboardComponent = (function () {
         window.location.href = 'http://www.38plank.com';
     };
     LeaderboardComponent.prototype.downloadItunes = function () {
-        window.location.href = 'https://itunes.apple.com/us/app/38plank-workouts-to-reach/id1155623794?mt=8';
+        ga('send', 'event', {
+            eventCategory: 'Download Redirect',
+            eventAction: 'Click',
+            eventLabel: 'Itunes'
+        });
+        window.open('https://itunes.apple.com/us/app/38plank-workouts-to-reach/id1155623794?mt=8');
     };
     LeaderboardComponent.prototype.downloadGoogle = function () {
-        window.location.href = 'https://play.google.com/store/apps/developer?id=38Plank';
+        ga('send', 'event', {
+            eventCategory: 'Download Redirect',
+            eventAction: 'Click',
+            eventLabel: 'Android'
+        });
+        window.open('https://play.google.com/store/apps/developer?id=38Plank');
     };
     LeaderboardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Component */])({
