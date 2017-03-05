@@ -570,7 +570,7 @@ module.exports = "<app-leaderboard></app-leaderboard>\n\n"
 /***/ 771:
 /***/ (function(module, exports) {
 
-module.exports = "<td colspan=\"6\" class=\"container\">\n  <div class=\"athleteid col-xs-6 col-sm-4\">\n    Athlete Id: {{athlete.userid}}\n  </div>\n  <div class=\"affiliateid col-xs-6 col-sm-4\">\n    Affiliate: {{athlete.affiliateid}}\n  </div>\n  <div class=\"age col-xs-6 col-sm-4\">\n    Age: {{athlete.age}}\n  </div>\n  <div class=\"height col-xs-6 col-sm-4\">\n    Height: {{athlete.height}}\n  </div>\n  <div class=\"weight col-xs-6 col-sm-4\">\n    Weight: {{athlete.weight}}\n  </div>\n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Region Rank: {{athlete.regionrank}}\n  </div>  \n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Worldwide Rank: {{athlete.overallrank}}\n  </div>\n</td>"
+module.exports = "<td colspan=\"6\" class=\"container\">\n  <div class=\"athleteid col-xs-6 col-sm-4\">\n    Athlete Id: {{athlete.userid}}\n  </div>\n  <div class=\"affiliateid col-xs-6 col-sm-4\">\n    Affiliate: {{athlete.affiliateid}}\n  </div>\n  <div class=\"age col-xs-6 col-sm-4\">\n    Age: {{athlete.age}}\n  </div>\n  <div class=\"height col-xs-6 col-sm-4\">\n    Height: {{athlete.height}}\n  </div>\n  <div class=\"weight col-xs-6 col-sm-4\">\n    Weight: {{athlete.weight}}\n  </div>\n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Region Rank: {{athlete.regionalrank}}\n  </div>  \n  <div class=\"region-rank col-xs-6 col-sm-4\">\n    Worldwide Rank: {{athlete.overallrank}}\n  </div>\n</td>"
 
 /***/ }),
 
