@@ -84,13 +84,22 @@
     </div>
   </div>
   <div class="row">
-    <div class="option col-sm-6">
+    <div class="option col-sm-4">
       <label for="name">Athlete Name</label>
       <input name="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
     </div>
-    <div class="option col-sm-6">
+    <div class="option col-sm-4">
       <label for="affiliate">Affiliate</label>
       <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
+    </div>
+    <div class="option col-sm-4">
+      <label for="region-input">Rank By</label>
+      <select class="region-input form-control" name="region-input" (change)="changeRanking($event.target.value)">
+        <option selected value="world">Worldwide</option> 
+        <option value="region">Region Rank</option>
+        <option value="workout1">17.1</option>
+        <option value="workout2">17.2</option> 
+      </select>      
     </div>
   </div>
   <div class="row">

@@ -116,6 +116,7 @@ label {
 .loading-bar {
     margin: auto;
     margin-bottom: -150px;
+    padding-top: 100px;
 }
 
 .page-input {

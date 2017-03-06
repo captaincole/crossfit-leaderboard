@@ -10,7 +10,8 @@ export class AthletesService {
   getAthletes(limit: number, offset: number,
               name?: string, affiliate?: string,
               division?: number, occupation?: number,
-              region?: number, minage?: number, maxage?: number,
+              region?: number, rank?: string,
+               minage?: number, maxage?: number,
               minweight?: number, maxweight?: number,
               minheight?: number, maxheight?: number) {
 
@@ -30,6 +31,10 @@ export class AthletesService {
 
     if (region) {
       params.set('region', JSON.stringify(region));
+    }
+
+    if (rank) {
+      params.set('sortby', rank);
     }
 
     if (minage) {
@@ -55,7 +60,7 @@ export class AthletesService {
     if (maxheight) {
       params.set('maxheight' , JSON.stringify(maxheight));
     }
-    
+
     params.set('offset' , JSON.stringify(offset));
     params.set('limit', JSON.stringify(limit));
     return this.http.get('/api', { search: params }).map( (res) => {

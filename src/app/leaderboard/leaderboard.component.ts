@@ -23,6 +23,7 @@ export class LeaderboardComponent implements OnInit {
   public division;
   public occupation;
   public region;
+  public ranking: string;
   public minage: number = 18;
   public maxage: number = 80;
   public loading = false;
@@ -46,22 +47,10 @@ export class LeaderboardComponent implements OnInit {
     });
     this.nameInput.throttleTime(200).subscribe( (val) => {
         console.log('Name Trigger: ' , val);
-        this.athletes.getAthletes(this.limit, 0, this.name,
-         this.affiliate, this.division,
-         this.occupation, this.region,
-         this.minage, this.maxage).subscribe( (list) => {
-          this.data = list;
-          this.loading = false;
-        });
+        this.reloadData();
     });
     this.affiliateInput.throttleTime(200).subscribe( (val) => {
-        this.athletes.getAthletes(this.limit, 0, this.name,
-         this.affiliate, this.division,
-          this.occupation, this.region,
-          this.minage, this.maxage).subscribe( (list) => {
-          this.data = list;
-          this.loading = false;
-        });
+        this.reloadData();
     });
   }
 
@@ -70,6 +59,7 @@ export class LeaderboardComponent implements OnInit {
         this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name,
          this.affiliate, this.division,
           this.occupation, this.region,
+          this.ranking,
           this.minage, this.maxage,
           this.minweight, this.maxweight,
           this.minheight, this.maxheight).subscribe( (list) => {
@@ -80,6 +70,7 @@ export class LeaderboardComponent implements OnInit {
       this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name,
          this.affiliate, this.division,
           this.occupation, this.region,
+          this.ranking,
           this.minage, this.maxage).subscribe( (list) => {
           this.data = list;
           this.loading = false;
@@ -143,6 +134,13 @@ export class LeaderboardComponent implements OnInit {
     this.moreData = {};
     this.loading = true;
     this.region = parseInt(region, 10);
+    this.page = 1;
+    this.reloadData();
+  }
+
+  changeRanking(rank) {
+    this.ranking = rank;
+    this.loading = true;
     this.page = 1;
     this.reloadData();
   }

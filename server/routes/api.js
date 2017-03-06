@@ -57,7 +57,24 @@ router.get('/', (req, res) => {
     }
 
     query.where('name').exists();
-    query.sort({'overallrank': 1});
+
+    // Sorting
+    if (req.query.sortby) {
+        if (req.query.sortby === 'world') {
+            query.sort({'overallrank': 1});
+        } else if (req.query.sortby === 'region') {
+            query.sort({'regionalrank': 1});
+        } else if (req.query.sortby === 'workout1') {
+            query.sort({'scores.0.scorevalue': 1});
+        } else if (req.query.sortby === 'workout2') {
+            console.log('workout2');
+            query.sort({'scores.1.scorevalue': -1});
+        } else {
+            query.sort({'overallrank': 1});
+        }
+    } else {
+        query.sort({'overallrank': 1});        
+    }
     
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
