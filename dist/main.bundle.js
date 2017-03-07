@@ -300,11 +300,11 @@ var LeaderboardComponent = (function () {
             _this.data = list;
             _this.loading = false;
         });
-        this.nameInput.throttleTime(300).subscribe(function (val) {
+        this.nameInput.throttleTime(200).subscribe(function (val) {
             console.log('Name Trigger: ', val);
             _this.reloadData();
         });
-        this.affiliateInput.throttleTime(300).subscribe(function (val) {
+        this.affiliateInput.throttleTime(200).subscribe(function (val) {
             _this.reloadData();
         });
     };

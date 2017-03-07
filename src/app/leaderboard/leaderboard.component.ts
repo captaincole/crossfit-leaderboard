@@ -45,11 +45,11 @@ export class LeaderboardComponent implements OnInit {
       this.data = list;
       this.loading = false;
     });
-    this.nameInput.throttleTime(300).subscribe( (val) => {
+    this.nameInput.throttleTime(200).subscribe( (val) => {
         console.log('Name Trigger: ' , val);
         this.reloadData();
     });
-    this.affiliateInput.throttleTime(300).subscribe( (val) => {
+    this.affiliateInput.throttleTime(200).subscribe( (val) => {
         this.reloadData();
     });
   }
