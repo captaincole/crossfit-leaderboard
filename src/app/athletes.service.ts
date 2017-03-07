@@ -8,7 +8,7 @@ export class AthletesService {
   constructor(private http: Http) { }
 
   getAthletes(limit: number, offset: number,
-              name?: string, affiliate?: string,
+              name?: Array<any>, affiliate?: Array<any>,
               division?: number, occupation?: number,
               region?: number, rank?: string,
                minage?: number, maxage?: number,
@@ -17,10 +17,10 @@ export class AthletesService {
 
     let params = new URLSearchParams();
     if (name) {
-      params.set('name', name);
+      params.set('name', JSON.stringify(name));
     }
     if (affiliate) {
-      params.set('affiliateid', affiliate);
+      params.set('affiliateid', JSON.stringify(affiliate));
     }
     if (division && division !== 0) {
       params.set('division', JSON.stringify(division));

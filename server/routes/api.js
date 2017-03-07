@@ -7,14 +7,18 @@ router.get('/', (req, res) => {
     // Add query methods here
     let query = Athlete.find({});
 
-    let name = req.query.name;
-    if (name) {
-        query.where('name').regex( new RegExp( name , 'i'))
+    if (req.query.name) {
+        let nameList = JSON.parse(req.query.name);
+        if (isNaN(parseInt(nameList[0]))) {
+            query.where('name').regex( new RegExp( nameList[0] , 'i'))
+        } else {
+            query.where('userid').in(nameList);
+        }
     }
     
-    let affiliateid = req.query.affiliateid;
-    if (affiliateid) {
-        query.where('affiliateid').equals(affiliateid);
+    if (req.query.affiliateid) {
+        let affiliateid = JSON.parse(req.query.affiliateid);
+        query.where('affiliateid').in(affiliateid);
     }
 
     let division = parseInt(req.query.division, 10);

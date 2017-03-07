@@ -45,11 +45,11 @@ export class LeaderboardComponent implements OnInit {
       this.data = list;
       this.loading = false;
     });
-    this.nameInput.throttleTime(200).subscribe( (val) => {
+    this.nameInput.throttleTime(300).subscribe( (val) => {
         console.log('Name Trigger: ' , val);
         this.reloadData();
     });
-    this.affiliateInput.throttleTime(200).subscribe( (val) => {
+    this.affiliateInput.throttleTime(300).subscribe( (val) => {
         this.reloadData();
     });
   }
@@ -65,7 +65,7 @@ export class LeaderboardComponent implements OnInit {
           this.minheight, this.maxheight).subscribe( (list) => {
           this.data = list;
           this.loading = false;
-        }); 
+        });
     } else {
       this.athletes.getAthletes(this.limit, this.limit * (this.page - 1), this.name,
          this.affiliate, this.division,
@@ -85,21 +85,21 @@ export class LeaderboardComponent implements OnInit {
     this.reloadData();
   }
 
-  searchNames(name) {
+  searchNames(nameList) {
     this.moreData = {};
     this.loading = true;
     this.page = 1;
-    this.name = name;
-    console.log('Name: ' , name);
-    this.nameInput.next(name);
+    this.name = nameList.split(',');
+    console.log('Name: ' , nameList);
+    this.nameInput.next(nameList);
   }
 
-  searchAffiliate(afid) {
+  searchAffiliate(afidList) {
     this.moreData = {};
     this.loading = true;
     this.page = 1;
-    this.affiliate = afid;
-    this.affiliateInput.next(afid);
+    this.affiliate = afidList.split(',');
+    this.affiliateInput.next(afidList);
   }
 
   changePage(pageNum) {
