@@ -45,19 +45,23 @@ router.get('/', (req, res) => {
     }
 
     if (req.query.minweight) {
-        query.where('weightval').gt(parseInt(req.query.minweight, 10) * 0.453592);
+        console.log('Weight: ' , req.query.minweight);
+        query.where('weightval').gt(parseFloat(req.query.minweight, 10) * 0.453592);
     }
 
     if (req.query.maxweight) {
-        query.where('weightval').lt(parseInt(req.query.maxweight, 10) * 0.453592);
+        console.log('Max weightval: ' , req.query.maxweight);
+        query.where('weightval').lt(parseFloat(req.query.maxweight, 10) * 0.453592);
     }
 
     if (req.query.minheight) {
-        query.where('heightval').gt(parseInt(req.query.minheight, 10) * 30.48);
+        console.log('Height: ' , req.query.minheight);
+        query.where('heightval').gt(parseFloat(req.query.minheight, 10) * 30.48);
     }
 
     if (req.query.maxheight) {
-        query.where('heightval').lt(parseInt(req.query.maxheight, 10) * 30.48);
+        console.log('Max Height: ' , req.query.maxheight);
+        query.where('heightval').lt(parseFloat(req.query.maxheight, 10) * 30.48);
     }
 
     query.where('name').exists();

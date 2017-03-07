@@ -45,21 +45,6 @@
       </select>
     </div>
     <div class="option col-sm-3">
-      <label for="occupation-input">Occupation</label>
-      <select class="occupation-input form-control" name="occupation-input" (change)="changeOccupation($event.target.value)">
-        <option selected value="0">All</option>        
-        <option value="1">Military Servicemember</option>
-        <option value="2">Law Enforcement Officer</option>  
-        <option value="3">Firefighter</option>  
-        <option value="4">EMT / Paramedic</option>  
-        <option value="5">Registered Nurse</option>  
-        <option value="6">Medical Doctor</option>  
-        <option value="7">School Teacher</option>  
-        <option value="8">Student</option>  
-        <option value="9">Garage CrossFitter</option>  
-      </select>
-    </div>
-    <div class="option col-sm-3">
       <label for="region-input">Region</label>
       <select class="region-input form-control" name="region-input" (change)="changeRegion($event.target.value)">
         <option selected value="0">Worldwide</option>        
@@ -82,17 +67,7 @@
         <option value="17">South West</option>  
       </select>
     </div>
-  </div>
-  <div class="row">
-    <div class="option col-sm-4">
-      <label for="name">Athlete Name</label>
-      <input name="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
-    </div>
-    <div class="option col-sm-4">
-      <label for="affiliate">Affiliate</label>
-      <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
-    </div>
-    <div class="option col-sm-4">
+    <div class="option col-sm-3">
       <label for="region-input">Rank By</label>
       <select class="region-input form-control" name="region-input" (change)="changeRanking($event.target.value)">
         <option selected value="world">Worldwide</option> 
@@ -100,6 +75,16 @@
         <option value="workout1">17.1</option>
         <option value="workout2">17.2</option> 
       </select>      
+    </div>
+  </div>
+  <div class="row">
+    <div class="option col-sm-6">
+      <label for="name">Athlete Name</label>
+      <input name="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
+    </div>
+    <div class="option col-sm-6">
+      <label for="affiliate">Affiliate</label>
+      <input name="affiliate" class="name-input form-control" (keyup)="searchAffiliate($event.target.value)" type="text">
     </div>
   </div>
   <div class="row">
@@ -137,7 +122,7 @@
     </div>
     <div class="max-age col-sm-6">
       <label> Max Weight (lbs): {{maxweight}} </label>
-      <md-slider (change)="changeMaxAge($event.value)" class="max-age-slider" thumbLabel="true" min="100" max="350" step="5" value="300" tickInterval="20"></md-slider>
+      <md-slider (change)="changeMaxWeight($event.value)" class="max-age-slider" thumbLabel="true" min="100" max="350" step="5" value="300" tickInterval="20"></md-slider>
     </div>
   </div>
 </div>

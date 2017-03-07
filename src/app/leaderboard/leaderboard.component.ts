@@ -179,28 +179,28 @@ export class LeaderboardComponent implements OnInit {
 
   changeMinWeight(val) {
     this.loading = true;
-    this.minweight = parseInt(val, 10);
+    this.minweight = parseFloat(val);
     this.page = 1;
     this.reloadData();
   }
   
   changeMaxWeight(val) {
     this.loading = true;
-    this.maxweight = parseInt(val, 10);
+    this.maxweight = parseFloat(val);
     this.page = 1;
     this.reloadData();
   }
 
   changeMinHeight(val) {
     this.loading = true;
-    this.minheight = parseInt(val, 10);
+    this.minheight = parseFloat(val);
     this.page = 1;
     this.reloadData();
   }
 
   changeMaxHeight(val) {
     this.loading = true;
-    this.maxheight = parseInt(val, 10);
+    this.maxheight = parseFloat(val);
     this.page = 1;
     this.reloadData();
   }
