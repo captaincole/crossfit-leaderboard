@@ -46,7 +46,7 @@ export class LeaderboardComponent implements OnInit {
       this.name = params['name']
         ? params['name'].split(',')
         : '';
-      
+
       this.reloadData();
     });
 
