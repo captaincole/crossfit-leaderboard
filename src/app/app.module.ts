@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes }  from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
@@ -11,6 +12,8 @@ import { MaterialModule } from '@angular/material';
 
 import 'hammerjs';
 import { ExtraDataComponent } from './extra-data/extra-data.component';
+
+const routes: Routes = [];
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { ExtraDataComponent } from './extra-data/extra-data.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     AthletesService

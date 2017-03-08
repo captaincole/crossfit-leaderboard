@@ -17,70 +17,70 @@
       <select class="limit-input form-control" name="limit-input" (change)="changeLimit($event.target.value)">
         <option selected value="10">10</option>
         <option value="25">25</option>
-        <option value="50">50</option>    
+        <option value="50">50</option>
       </select>
     </div>
     <div class="option col-sm-3">
       <label for="division-input">Division</label>
       <select class="division-input form-control" name="division-input" (change)="changeDivision($event.target.value)">
-        <option selected value="0">Both</option>        
+        <option selected value="0">Both</option>
         <option value="1">Individual Men</option>
-        <option value="2">Individual Women</option>  
+        <option value="2">Individual Women</option>
         <option value="15">Teenage Girls (14-15)</option>
-        <option value="14">Teenage Boys (14-15)</option>  
+        <option value="14">Teenage Boys (14-15)</option>
         <option value="17">Teenage Girls (16-17)</option>
         <option value="16">Teenage Boys (16-17)</option>
-        <option value="19">Masters Women (35-39)</option>  
-        <option value="18">Masters Men (35-39)</option>  
-        <option value="13">Masters Women (40-44)</option>  
-        <option value="12">Masters Men (40-44)</option>  
-        <option value="4">Masters Women (45-49)</option>  
-        <option value="3">Masters Men (45-49)</option>  
-        <option value="6">Masters Women (50-54)</option>  
-        <option value="5">Masters Men (50-54)</option>          
-        <option value="8">Masters Women (55-59)</option>          
-        <option value="7">Masters Men (55-59)</option>          
-        <option value="10">Masters Women (60+)</option>          
-        <option value="9">Masters Men (60+)</option>          
+        <option value="19">Masters Women (35-39)</option>
+        <option value="18">Masters Men (35-39)</option>
+        <option value="13">Masters Women (40-44)</option>
+        <option value="12">Masters Men (40-44)</option>
+        <option value="4">Masters Women (45-49)</option>
+        <option value="3">Masters Men (45-49)</option>
+        <option value="6">Masters Women (50-54)</option>
+        <option value="5">Masters Men (50-54)</option>
+        <option value="8">Masters Women (55-59)</option>
+        <option value="7">Masters Men (55-59)</option>
+        <option value="10">Masters Women (60+)</option>
+        <option value="9">Masters Men (60+)</option>
       </select>
     </div>
     <div class="option col-sm-3">
       <label for="region-input">Region</label>
       <select class="region-input form-control" name="region-input" (change)="changeRegion($event.target.value)">
-        <option selected value="0">Worldwide</option>        
+        <option selected value="0">Worldwide</option>
         <option value="1">Africa</option>
-        <option value="2">Asia</option>  
-        <option value="3">Australia</option>  
-        <option value="4">Canada East</option>  
-        <option value="5">Canada West</option>  
-        <option value="6">Central East</option>  
-        <option value="7">Europe</option>  
-        <option value="8">Latin America</option>  
-        <option value="9">Mid Atlantic</option>  
-        <option value="10">North Central</option>  
-        <option value="11">North East</option>  
-        <option value="12">Northern California</option>  
-        <option value="13">North West</option>  
-        <option value="14">South Central</option>  
-        <option value="15">South East</option>  
-        <option value="16">Southern California</option>  
-        <option value="17">South West</option>  
+        <option value="2">Asia</option>
+        <option value="3">Australia</option>
+        <option value="4">Canada East</option>
+        <option value="5">Canada West</option>
+        <option value="6">Central East</option>
+        <option value="7">Europe</option>
+        <option value="8">Latin America</option>
+        <option value="9">Mid Atlantic</option>
+        <option value="10">North Central</option>
+        <option value="11">North East</option>
+        <option value="12">Northern California</option>
+        <option value="13">North West</option>
+        <option value="14">South Central</option>
+        <option value="15">South East</option>
+        <option value="16">Southern California</option>
+        <option value="17">South West</option>
       </select>
     </div>
     <div class="option col-sm-3">
       <label for="region-input">Rank By</label>
       <select class="region-input form-control" name="region-input" (change)="changeRanking($event.target.value)">
-        <option selected value="world">Worldwide</option> 
+        <option selected value="world">Worldwide</option>
         <option value="region">Region Rank</option>
         <option value="workout1">17.1</option>
-        <option value="workout2">17.2</option> 
-      </select>      
+        <option value="workout2">17.2</option>
+      </select>
     </div>
   </div>
   <div class="row">
     <div class="option col-sm-6">
       <label for="name">Athlete Name</label>
-      <input name="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
+      <input name="name" [(ngModel)]="name" class="name-input form-control" (keyup)="searchNames($event.target.value)" type="text">
     </div>
     <div class="option col-sm-6">
       <label for="affiliate">Affiliate</label>
@@ -141,7 +141,7 @@
   <tbody *ngFor="let athlete of data; let i = index;" >
     <tr app-score class="score"
       [moreData]="moreData[i]"
-      [position]="i + (limit * (page -1)) + 1" 
+      [position]="i + (limit * (page -1)) + 1"
       [athlete]="athlete" (click)="showMoreData(i)"></tr>
     <tr app-extra-data class="moreData" [hidden]="!moreData[i]" [athlete]="athlete">
     </tr>
@@ -153,8 +153,8 @@
     <div class="gotopage">
       <label for="gotopage">Go To Page</label>
       <input class="form-control page-input" (keyup)="changePage($event.target.value)" type="number" [value]="page">
-    </div>  
-    <button class="previous btn btn-primary" (click)="nextPage()">Next</button>   
+    </div>
+    <button class="previous btn btn-primary" (click)="nextPage()">Next</button>
   </div>
   <div class="footer">
     <div>Data Updated: Monday March 6th 11:00AM PCT</div>
