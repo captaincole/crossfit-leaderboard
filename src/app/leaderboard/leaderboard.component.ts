@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AthletesService } from '../athletes.service';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/throttleTime';
 
 declare var ga: any;
@@ -34,21 +34,32 @@ export class LeaderboardComponent implements OnInit {
   public minheight: number;
   public maxheight: number;
 
-  constructor(public athletes: AthletesService) {
+  constructor(public athletes: AthletesService, private route: ActivatedRoute) {
     this.nameInput = new Subject<any>();
     this.affiliateInput = new Subject<any>();
   }
 
   ngOnInit() {
     this.loading = true;
-    this.athletes.getAthletes(10, 0, null, null).subscribe( (list) => {
+
+    this.route.queryParams.subscribe((params: Params) => {
+      this.name = params['name']
+        ? params['name'].split(',')
+        : '';
+
+      this.reloadData();
+    });
+
+    this.athletes.getAthletes(10, 0, this.name, null).subscribe( (list) => {
       this.data = list;
       this.loading = false;
     });
+
     this.nameInput.throttleTime(200).subscribe( (val) => {
         console.log('Name Trigger: ' , val);
         this.reloadData();
     });
+
     this.affiliateInput.throttleTime(200).subscribe( (val) => {
         this.reloadData();
     });
@@ -183,7 +194,7 @@ export class LeaderboardComponent implements OnInit {
     this.page = 1;
     this.reloadData();
   }
-  
+
   changeMaxWeight(val) {
     this.loading = true;
     this.maxweight = parseFloat(val);
