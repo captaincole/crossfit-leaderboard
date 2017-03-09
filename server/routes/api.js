@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     if (req.query.name) {
         let nameList = JSON.parse(req.query.name);
         if (isNaN(parseInt(nameList[0]))) {
-            query.where('name').regex( new RegExp( nameList[0] , 'i'))
+            query.where('name').regex( new RegExp( '^' + nameList[0] , 'i'))
         } else {
             query.where('userid').in(nameList);
         }
