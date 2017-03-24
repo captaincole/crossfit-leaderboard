@@ -75,13 +75,10 @@ router.get('/', (req, res) => {
         } else if (req.query.sortby === 'workout1') {
             query.sort({'scores.0.scorevalue': 1});
         } else if (req.query.sortby === 'workout2') {
-            console.log('workout2');
             query.sort({'scores.1.scorevalue': -1});
         } else if (req.query.sortby === 'workout3') {
-            console.log('workout3');
             query.sort({'scores.2.scorevalue': -1});
         } else if (req.query.sortby === 'workout4') {
-            console.log('workout4');
             query.sort({'scores.3.scorevalue': -1});
         } else {
             query.sort({'overallrank': 1});
