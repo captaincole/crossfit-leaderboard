@@ -23,6 +23,6 @@ describe('ScoreComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component instanceof ScoreComponent).toBeTruthy();
   });
 });
