@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
             query.where('userid').in(nameList);
         }
     }
-    
+
     if (req.query.affiliateid) {
         let affiliateid = JSON.parse(req.query.affiliateid);
         query.where('affiliateid').in(affiliateid);
@@ -77,13 +77,19 @@ router.get('/', (req, res) => {
         } else if (req.query.sortby === 'workout2') {
             console.log('workout2');
             query.sort({'scores.1.scorevalue': -1});
+        } else if (req.query.sortby === 'workout3') {
+            console.log('workout3');
+            query.sort({'scores.2.scorevalue': -1});
+        } else if (req.query.sortby === 'workout4') {
+            console.log('workout4');
+            query.sort({'scores.3.scorevalue': -1});
         } else {
             query.sort({'overallrank': 1});
         }
     } else {
-        query.sort({'overallrank': 1});        
+        query.sort({'overallrank': 1});
     }
-    
+
     let limit = parseInt(req.query.limit, 10);
     if (limit) {
         query.limit(parseInt(limit, 10));
